@@ -1,6 +1,16 @@
 package model.card;
 
 public class Card {
-    public int cardNumber;
-    public String color;
+    int cardNumber;
+    String color;
+    Boolean isJoker = false;
+    Boolean isBatched = false;
+
+    public Boolean jokerCheck(){
+        return isJoker;
+    }
+
+    public Boolean batchCheck(){
+        return isBatched;
+    }
 }
