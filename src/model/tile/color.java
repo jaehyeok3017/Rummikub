@@ -7,17 +7,4 @@ public class color {
     public static String FONT_YELLOW = "\u001B[33m"; //노랑색
     public static String FONT_BLUE = "\u001B[34m"; //파랑색
 
-
-    public static String yellow(String content) {
-        return FONT_YELLOW + content + RESET;
-    }
-    public static String blue(String content) {
-        return FONT_BLUE + content + RESET;
-    }
-    public static String black(String content) {
-        return FONT_BLACK + content + RESET;
-    }
-    public static String red(String content) {
-        return FONT_RED + content + RESET;
-    }
 }
