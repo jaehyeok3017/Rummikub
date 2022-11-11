@@ -9,25 +9,24 @@ import static model.tile.color.*;
 
 public class Main {
     public static void main(String[] args) {
-//        GameFrame frame = new GameFrame();
 
-        for(tileColor tColor : tileColor.values()){
-            if(tColor == tileColor.RED){
+        for(tileColor tile : tileColor.values()){
+            if(tile == tileColor.RED){
                 for(int i = 1; i < 14; i++){
                     System.out.println(FONT_RED + "R" + i + RESET);
                 }
             }
-            if(tColor == tileColor.YELLOW){
+            if(tile == tileColor.YELLOW){
                 for(int i = 1; i < 14; i++){
                     System.out.println(FONT_YELLOW + "Y" + i + RESET);
                 }
             }
-            if(tColor == tileColor.BLUE){
+            if(tile == tileColor.BLUE){
                 for(int i = 1; i < 14; i++){
                     System.out.println(FONT_BLUE + "B" + i + RESET);
                 }
             }
-            if(tColor == tileColor.WHITE){
+            if(tile == tileColor.WHITE){
                 for(int i = 1; i < 14; i++){
                     System.out.println(FONT_WHITE + "W" + i + RESET);
                 }
@@ -35,9 +34,14 @@ public class Main {
         }
 
         Scanner scan = new Scanner(System.in);
-        System.out.print("유저의 이름을 입력하세요 : ");
-        String name = scan.next();
+        System.out.print("유저1의 이름을 입력하세요 : ");
+        String nameUser1 = scan.next();
 
-        new Player(name);
+        new Player(nameUser1);
+
+        System.out.print("유저2의 이름을 입력하세요 : ");
+        String nameUser2 = scan.next();
+
+        new Player(nameUser2);
     }
 }
