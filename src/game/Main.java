@@ -35,7 +35,7 @@ public class Main {
         }
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("유저의 이름을 입력하세요 : ");
+        System.out.print("유저의 이름을 입력하세요 : ");
         String name = scan.next();
 
         new Player(name);
