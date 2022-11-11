@@ -1,6 +1,9 @@
 package game;
 
+import model.player.Player;
 import model.tile.tileColor;
+import model.tile.tileDeck;
+import java.util.Scanner;
 
 import static model.tile.color.*;
 
@@ -30,5 +33,11 @@ public class Main {
                 }
             }
         }
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("유저의 이름을 입력하세요 : ");
+        String name = scan.next();
+
+        new Player(name);
     }
 }
