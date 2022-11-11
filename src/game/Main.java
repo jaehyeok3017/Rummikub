@@ -2,7 +2,7 @@ package game;
 
 import model.player.Player;
 import model.tile.tileColor;
-import model.tile.tileDeck;
+
 import java.util.Scanner;
 
 import static model.tile.color.*;
@@ -14,22 +14,22 @@ public class Main {
         for(tileColor tColor : tileColor.values()){
             if(tColor == tileColor.RED){
                 for(int i = 1; i < 14; i++){
-                    System.out.println(FONT_RED + tColor + i + RESET);
+                    System.out.println(FONT_RED + "R" + i + RESET);
                 }
             }
             if(tColor == tileColor.YELLOW){
                 for(int i = 1; i < 14; i++){
-                    System.out.println(FONT_YELLOW + tColor + i + RESET);
+                    System.out.println(FONT_YELLOW + "Y" + i + RESET);
                 }
             }
             if(tColor == tileColor.BLUE){
                 for(int i = 1; i < 14; i++){
-                    System.out.println(FONT_BLUE + tColor + i + RESET);
+                    System.out.println(FONT_BLUE + "B" + i + RESET);
                 }
             }
-            if(tColor == tileColor.BLACK){
+            if(tColor == tileColor.WHITE){
                 for(int i = 1; i < 14; i++){
-                    System.out.println(FONT_BLACK + tColor + i + RESET);
+                    System.out.println(FONT_WHITE + "W" + i + RESET);
                 }
             }
         }
