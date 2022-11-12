@@ -2,44 +2,50 @@ package game;
 
 import model.player.Player;
 import model.tile.tileColor;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static model.tile.color.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] tileList = new String[64];
+        ArrayList<String> tileList = new ArrayList<String>(52);
 
         for(tileColor tile : tileColor.values()){
             int i = 0;
 
             if(tile == tileColor.RED){
                 for(int j = 1; j < 14; j++){
-                    tileList[i++] = FONT_RED + "R" + j + RESET;
+                    tileList.add(i, FONT_RED + "R" + j + RESET);
+                    i++;
                 }
             }
 
             if(tile == tileColor.YELLOW){
                 for(int j = 1; j < 14; j++){
-                    tileList[i++] = FONT_YELLOW + "Y" + j + RESET;
+                    tileList.add(i, FONT_YELLOW + "Y" + j + RESET);
+                    i++;
                 }
             }
 
             if(tile == tileColor.BLUE){
                 for(int j = 1; j < 14; j++){
-                    tileList[i++] = FONT_BLUE + "B" + j + RESET;
+                    tileList.add(i, FONT_BLUE + "B" + j + RESET);
+                    i++;
                 }
             }
 
             if(tile == tileColor.WHITE){
                 for(int j = 1; j < 14; j++){
-                    tileList[i++] = FONT_WHITE + "W" + j + RESET;
+                    tileList.add(i, FONT_WHITE + "W" + j + RESET);
+                    i++;
                 }
             }
         }
 
-        for(int i = 0; i<64; i++){
-            System.out.println(tileList[i]);
+        for(int i = 0; i < 52; i++){
+            System.out.println(tileList.get(i));
         }
 
         Scanner scan = new Scanner(System.in);
