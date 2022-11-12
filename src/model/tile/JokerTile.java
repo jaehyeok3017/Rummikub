@@ -5,5 +5,6 @@ public class JokerTile extends Tile {
 
     public JokerTile(int tileNum, tileColor color) {
         super(tileNum, color);
+
     }
 }

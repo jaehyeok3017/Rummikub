@@ -4,6 +4,8 @@ import model.player.Player;
 import model.tile.tileColor;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 import static model.tile.color.*;
@@ -43,6 +45,8 @@ public class Main {
                 }
             }
         }
+        Collections.shuffle(tileList);
+
 
         for(int i = 0; i < 52; i++){
             System.out.println(tileList.get(i));
