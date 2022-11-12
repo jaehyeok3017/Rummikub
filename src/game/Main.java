@@ -4,7 +4,6 @@ import model.player.Player;
 import model.tile.tileColor;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -12,7 +11,7 @@ import static model.tile.color.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<String> tileList = new ArrayList<String>(52);
+        ArrayList<String> tileList = new ArrayList<>(52);
 
         for(tileColor tile : tileColor.values()){
             int i = 0;
@@ -45,10 +44,12 @@ public class Main {
                 }
             }
         }
+        tileList.add(14,FONT_WHITE + "WJ" + RESET); //WhiteJoker
+        tileList.add(14,FONT_RED + "RJ" + RESET); //RedJoker
+
         Collections.shuffle(tileList);
 
-
-        for(int i = 0; i < 52; i++){
+        for(int i = 0; i < 54; i++){
             System.out.println(tileList.get(i));
         }
 
