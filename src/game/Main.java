@@ -24,14 +24,15 @@ public class Main {
         }
         
         Scanner scan = new Scanner(System.in);
-        System.out.print("유저1의 이름을 입력하세요 : ");
-        String nameUser1 = scan.next();
 
-        new Player(nameUser1);
+        System.out.print("유저1의 이름을 입력하세요 : ");
+        String player1 = scan.next();
+        new Player(player1);
 
         System.out.print("유저2의 이름을 입력하세요 : ");
-        String nameUser2 = scan.next();
+        String player2 = scan.next();
+        new Player(player2);
 
-        new Player(nameUser2);
+        
     }
 }
