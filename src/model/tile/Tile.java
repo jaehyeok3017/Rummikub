@@ -1,19 +1,19 @@
 package model.tile;
 
-import model.game.Rule;
+import model.game.GamePlay;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import static model.tile.Stack.stackSize;
-import static model.tile.color.*;
-import static model.tile.color.RESET;
+import static model.tile.Color.*;
+import static model.tile.Color.RESET;
 
 public class Tile {
     public int tileNum;
-    public tileColor color;
+    public TileColor color;
 
-    public Tile(int tileNum, tileColor color){
+    public Tile(int tileNum, TileColor color){
         this.tileNum = tileNum;
         this.color = color;
     }
@@ -41,7 +41,7 @@ public class Tile {
         int tileListSize = stackSize(tileList);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
-        if(tileListSize < 0) Rule.gameEndingCheck(tileList, playerOneTileList, playerTwoTileList);
+        if(tileListSize < 0) GamePlay.gameEndingCheck(tileList, playerOneTileList, playerTwoTileList);
 
         // 가져갈 카드가 있는 경우
         else{
