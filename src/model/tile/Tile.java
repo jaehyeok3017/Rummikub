@@ -2,6 +2,7 @@ package model.tile;
 
 import model.game.Rule;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -58,6 +59,13 @@ public class Tile {
         tileList.add(14,FONT_RED + "RJ" + RESET); //RedJoker
     }
 
+    public static void tileListShow(ArrayList<String> tileList) {
+        int tileListSize = stackSize(tileList);
+
+        for(int i = 0; i<tileListSize; i++){
+            System.out.print(tileList.get(i) + " ");
+        }
+    }
 
     public static void tileShuffle(ArrayList<String> tileList) {
         for(int i = 0 ; i<3; i++){

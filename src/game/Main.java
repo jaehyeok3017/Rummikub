@@ -16,7 +16,6 @@ public class Main {
         jokerTileAdd(tileList); // 조커 타일을 추가시킴
         tileShuffle(tileList); // 타일을 셔플함
 
-
         // 테스트용 코드
         for(int i = 0; i < 54; i++){
             System.out.println(tileList.get(i));
@@ -41,5 +40,7 @@ public class Main {
         Player.playerListShow(playerOne.tileList);
         System.out.println("\n-----------------\n 플레이어 " + playerTwo.name + "의 배열");
         Player.playerListShow(playerTwo.tileList);
+        System.out.println("\n-----------------\n 나머지 배열");
+        tileListShow(tileList);
     }
 }
