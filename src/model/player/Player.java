@@ -15,11 +15,9 @@ public class Player {
         cardCount = 0;
     }
 
-    public static void playerListShow(ArrayList list){
-        int length = list.size();
-
-        for(int i = 0; i < length; i++){
-            System.out.print(list.get(i) + " ");
+    public static void playerListShow(ArrayList<String> list){
+        for (String s : list) {
+            System.out.print(s + " ");
         }
     }
 }
