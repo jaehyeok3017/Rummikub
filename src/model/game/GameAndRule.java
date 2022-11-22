@@ -4,7 +4,11 @@ import model.tile.Stack;
 
 import java.util.ArrayList;
 
-public class Rule {
+public class GameAndRule {
+    public static void gameStarting(ArrayList<String> tilsList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList){
+
+    }
+
     public static void gamePlaying(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList){
 
     }
