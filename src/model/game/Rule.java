@@ -5,7 +5,11 @@ import model.tile.Stack;
 import java.util.ArrayList;
 
 public class Rule {
-    public static void gameEnding(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList) {
+    public static void gamePlaying(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList){
+
+    }
+
+    public static void gameEndingCheck(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList) {
         int tileListSize = Stack.stackSize(tileList);
         int playerOneListSize = Stack.stackSize(playerOneTileList);
         int playerTwoListSize = Stack.stackSize(playerTwoTileList);

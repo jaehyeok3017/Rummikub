@@ -33,10 +33,9 @@ public class Main {
             tileDivide(tileList, playerOne.tileList, playerTwo.tileList, 2);
         }
 
-        System.out.println("-----------------\n 플레이어 " + playerOne.name + "의 배열");
-        Player.playerListShow(playerOne.tileList);
-        System.out.println("\n-----------------\n 플레이어 " + playerTwo.name + "의 배열");
-        Player.playerListShow(playerTwo.tileList);
+        Player.playerListShow(playerOne.tileList, playerOne.name);
+        Player.playerListShow(playerTwo.tileList, playerTwo.name);
+
         System.out.println("\n-----------------\n 나머지 배열");
         tileListShow(tileList);
     }

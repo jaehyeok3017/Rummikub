@@ -2,7 +2,6 @@ package model.tile;
 
 import model.game.Rule;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -42,7 +41,7 @@ public class Tile {
         int tileListSize = stackSize(tileList);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
-        if(tileListSize < 0) Rule.gameEnding(tileList, playerOneTileList, playerTwoTileList);
+        if(tileListSize < 0) Rule.gameEndingCheck(tileList, playerOneTileList, playerTwoTileList);
 
         // 가져갈 카드가 있는 경우
         else{
