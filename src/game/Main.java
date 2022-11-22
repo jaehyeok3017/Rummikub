@@ -6,13 +6,13 @@ import model.tile.Stack;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static model.game.GamePlay.gameInitSetting;
-import static model.tile.Tile.*;
+import static model.game.GameInitAndEndSet.gameInitSetting;
+import static model.game.GamePlaying.gamePlay;
+import static model.tile.Tile.getStack;
 
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<String> tileList = new ArrayList<>(106);
 
         // 01. 초기 게임 세팅
         Scanner scan = new Scanner(System.in);
@@ -25,6 +25,9 @@ public class Main {
         String playerTwoNameInput = scan.next();
         Player playerTwo = new Player(playerTwoNameInput);
 
-        gameInitSetting(tileList, playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
+        gameInitSetting(getStack(), playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
+
+        // 02. 게임 시작 (여기 안에서 자체 루프 돌림)
+        gamePlay(getStack(), playerOne, playerTwo, playerOne.name, playerTwo.name);
     }
 }

@@ -2,8 +2,8 @@ package model.tile;
 
 import java.util.ArrayList;
 
-import static model.tile.Color.*;
-import static model.tile.Color.RESET;
+import static model.tile.ColorCode.*;
+import static model.tile.ColorCode.RESET;
 
 public class Stack {
     public static void push(ArrayList<String> tileList){

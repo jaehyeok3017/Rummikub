@@ -14,11 +14,4 @@ public class Player {
         name = inputPlayerName;
         cardCount = 0;
     }
-
-    public static void playerListShow(ArrayList<String> list, String name){
-        System.out.println("\n-----------------\n 플레이어 " + name + "의 배열");
-        for (String s : list) {
-            System.out.print(s + " ");
-        }
-    }
 }
