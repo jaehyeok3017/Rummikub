@@ -1,14 +1,12 @@
 package game;
 
 import model.player.Player;
-import model.tile.Stack;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static model.game.GameInitAndEndSet.gameInitSetting;
 import static model.game.GamePlaying.gamePlay;
-import static model.tile.Tile.getStack;
+import static model.tile.Tile.getNoPickTileList;
 
 
 public class Main {
@@ -25,9 +23,9 @@ public class Main {
         String playerTwoNameInput = scan.next();
         Player playerTwo = new Player(playerTwoNameInput);
 
-        gameInitSetting(getStack(), playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
+        gameInitSetting(getNoPickTileList(), playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
 
         // 02. 게임 시작 (여기 안에서 자체 루프 돌림)
-        gamePlay(getStack(), playerOne, playerTwo, playerOne.name, playerTwo.name);
+        gamePlay(getNoPickTileList(), playerOne, playerTwo, playerOne.name, playerTwo.name);
     }
 }

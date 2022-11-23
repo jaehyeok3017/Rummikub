@@ -11,7 +11,7 @@ import static model.tile.ColorCode.RESET;
 public class Tile {
     public int tileNum;
     public TileColor color;
-    static ArrayList<String> tileStack = new ArrayList<>(106);
+    static ArrayList<String> noPickTileList = new ArrayList<>(106);
 
     public Tile(int tileNum, TileColor color){
         this.tileNum = tileNum;
@@ -49,7 +49,7 @@ public class Tile {
         }
     }
 
-    public static ArrayList<String> getStack(){
-        return tileStack;
+    public static ArrayList<String> getNoPickTileList(){
+        return noPickTileList;
     }
 }

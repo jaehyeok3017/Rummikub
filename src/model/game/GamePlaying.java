@@ -18,21 +18,21 @@ public class GamePlaying {
             if (playerTurn == 1) {
                 playerTurn = 2;
                 tileListShow(playerOne.tileList, playerOneName);
-                String playChoice = playChoice();
+                String playChoice = playChoicePickOrShow();
                 choiceCheck(playChoice, tileList, playerOne.tileList, playerOneName);
             }
 
             else if (playerTurn == 2) {
                 playerTurn = 1;
                 tileListShow(playerTwo.tileList, playerTwoName);
-                String playChoice = playChoice();
+                String playChoice = playChoicePickOrShow();
                 choiceCheck(playChoice, tileList, playerTwo.tileList, playerTwoName);
             }
         }
     }
 
-    private static String playChoice() {
-        System.out.print("\n카드 가져오기 : P or p / 카드 내기 : Q or q : ");
+    private static String playChoicePickOrShow() {
+        System.out.print("\n카드 가져오기 : P or p / 카드 내기 : S or s : ");
         return scan.next();
     }
 
@@ -43,13 +43,14 @@ public class GamePlaying {
             tileDivide(tileList, playerList);
         }
 
-        // 카드 내기 (q)
-        else if(Objects.equals(playChoice, "q") || Objects.equals(playChoice, "Q")){
+        // 카드 내기 (s)
+        else if(Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")){
+            
         }
 
         else{
             System.out.println("잘못된 선택지입니다. 다시 입력하세요.");
-            playChoice();
+            playChoicePickOrShow();
         }
     }
 }
