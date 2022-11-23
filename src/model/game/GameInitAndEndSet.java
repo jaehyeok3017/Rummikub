@@ -1,6 +1,5 @@
 package model.game;
 
-import model.player.Player;
 import model.tile.Stack;
 
 import java.util.*;
@@ -22,9 +21,9 @@ public class GameInitAndEndSet {
 
         // 초기 배열을 보여줌 (테스트코드)
         // TODO : 테스트 종료 후 지우기 (위의 매개변수 playerOneName, playerTwoName 까지.)
-        tileListShow(playerOneTileList, playerOneName);
-        tileListShow(playerTwoTileList, playerTwoName);
-        tileListShow(tileList, "나머지");
+        playerTileListShow(playerOneTileList, playerOneName);
+        playerTileListShow(playerTwoTileList, playerTwoName);
+        playerTileListShow(tileList, "나머지");
     }
 
     public static int gameEndCheck(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList) {
@@ -65,7 +64,7 @@ public class GameInitAndEndSet {
 
         }
 
-        // 플레이어3 승리
+        // 카드가 전체 빠져서 무승부
         else if (gameEndStatus == 3){
 
         }
