@@ -6,7 +6,7 @@ public class Player {
     public String name;
     public int cardCount;
     public boolean registerCheck;
-    public ArrayList<String> tileList = new ArrayList<String>(52); // 최대 카드 개수 106 & 최소 플레이 인원 2 == 54
+    public ArrayList<String> tileList = new ArrayList<String>(106);
 
     public Player(String inputPlayerName) {
         name = inputPlayerName;
