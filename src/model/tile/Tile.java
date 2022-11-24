@@ -24,12 +24,6 @@ public class Tile {
         }
     }
 
-    public static void onBoardTileListShow() {
-        for (String s : onBoardTileList) {
-            System.out.println("[ " + s + " ]");
-        }
-    }
-
     public static void tileShuffle(ArrayList<String> tileList) {
         for (int i = 0; i < 3; i++) {
             Collections.shuffle(tileList);
