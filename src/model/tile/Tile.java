@@ -25,15 +25,16 @@ public class Tile {
     }
 
     public static void playerTileListShow(ArrayList<String> list, String name) {
-        System.out.println("\n-----------------\n 플레이어 " + name + "의 배열");
+        System.out.println("\n-----------------\n" + name + " TileList");
         for (String s : list) {
-            System.out.print(s + " ");
+            System.out.print("[" + s + "], ");
         }
-        System.out.println("\n-----------------");
     }
 
-    public static void tileListShow() {
-
+    public static void onBoardTileListShow() {
+        for (String s : onBoardTileList) {
+            System.out.println("[ " + s + " ]");
+        }
     }
 
     public static void tileShuffle(ArrayList<String> tileList) {

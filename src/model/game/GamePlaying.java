@@ -5,8 +5,7 @@ import model.player.Player;
 import java.util.*;
 
 import static model.game.GameInitAndEndSet.gameEndCheck;
-import static model.tile.Tile.tileDivide;
-import static model.tile.Tile.playerTileListShow;
+import static model.tile.Tile.*;
 
 public class GamePlaying {
     static Scanner scan = new Scanner(System.in);
