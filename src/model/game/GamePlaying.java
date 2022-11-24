@@ -38,7 +38,8 @@ public class GamePlaying {
                                     Player player) {
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
-            noPickTileDivide(tileList, playerList);
+            String tile = noPickTileDivide(tileList, playerList);
+            System.out.println(playerName + "에게 [" + tile + "] 카드가 추가되었습니다.");
         }
 
         // 카드 내기 (s)

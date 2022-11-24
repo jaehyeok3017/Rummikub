@@ -13,9 +13,12 @@ public class Board {
     static Node onBoardTile = new Node();
     static Node temporaryTile = new Node();
 
-    public static void turnChanged(ArrayList<Node> previousOnBoardTileList,
-                                   ArrayList<Node> onBoardTileList, Player player){
+    public static void turnChanged(){
+        previousOnBoardTileList = onBoardTileList;
+    }
 
+    public static void turnIsFailed() {
+        onBoardTileList = previousOnBoardTileList;
     }
 
     public static void generateTemporaryTileList(Player player, ArrayList<Node> temporaryTileList,

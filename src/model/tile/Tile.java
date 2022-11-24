@@ -29,18 +29,21 @@ public class Tile {
         }
     }
 
-    public static void noPickTileDivide(ArrayList<String> tileList, ArrayList<String> playerTileList) {
+    public static String noPickTileDivide(ArrayList<String> tileList, ArrayList<String> playerTileList) {
         int tileListSize = getStackSize(tileList);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
-        if (tileListSize < 0) gameEnd(0);
+        if (tileListSize < 0) {
+            gameEnd(0);
+            return "None";
+        }
 
         // 가져갈 카드가 있는 경우
         else {
             playerTileList.add(Stack.pop(tileList));
 
             int playerTileListSize = getStackSize(playerTileList);
-            System.out.println("[" + playerTileList.get(playerTileListSize - 1) + "] 카드가 추가되었습니다.");
+            return playerTileList.get(playerTileListSize - 1);
         }
     }
 
