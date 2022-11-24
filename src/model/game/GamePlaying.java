@@ -18,8 +18,24 @@ public class GamePlaying {
         }
     }
 
+    private static void gamePlayToTurn(ArrayList<String> tileList, Player playerOne, String playerOneName,
+                                       Player playerTwo, String playerTwoName) {
+        if (playerTurn == 1) {
+            playerTurn = 2;
+            playerTileListShow(playerOne.tileList, playerOneName);
+            String playChoice = playChoicePickOrShow();
+            choiceCheck(playChoice, tileList, playerOne.tileList, playerOneName, playerOne);
+        } else if (playerTurn == 2) {
+            playerTurn = 1;
+            playerTileListShow(playerTwo.tileList, playerTwoName);
+            String playChoice = playChoicePickOrShow();
+            choiceCheck(playChoice, tileList, playerTwo.tileList, playerTwoName, playerTwo);
+        }
+    }
+
     private static void choiceCheck(String playChoice, ArrayList<String> tileList,
-                                    ArrayList<String> playerList, String playerName) {
+                                    ArrayList<String> playerList, String playerName,
+                                    Player player) {
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
             tileDivide(tileList, playerList);
@@ -27,11 +43,15 @@ public class GamePlaying {
 
         // 카드 내기 (s)
         else if (Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")) {
-            String choiceAddOrEdit = playChoiceAddOrEdit();
-            if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
+            if (!player.registerCheck) {
 
-            } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
+            } else {
+                String choiceAddOrEdit = playChoiceAddOrEdit();
+                if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
 
+                } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
+
+                }
             }
         } else {
             System.out.println("잘못된 선택지입니다. 다시 입력하세요.");
@@ -39,20 +59,6 @@ public class GamePlaying {
         }
     }
 
-    private static void gamePlayToTurn(ArrayList<String> tileList, Player playerOne, String playerOneName,
-                                       Player playerTwo, String playerTwoName) {
-        if (playerTurn == 1) {
-            playerTurn = 2;
-            playerTileListShow(playerOne.tileList, playerOneName);
-            String playChoice = playChoicePickOrShow();
-            choiceCheck(playChoice, tileList, playerOne.tileList, playerOneName);
-        } else if (playerTurn == 2) {
-            playerTurn = 1;
-            playerTileListShow(playerTwo.tileList, playerTwoName);
-            String playChoice = playChoicePickOrShow();
-            choiceCheck(playChoice, tileList, playerTwo.tileList, playerTwoName);
-        }
-    }
 
     private static String playChoicePickOrShow() {
         System.out.print("\n카드 가져오기 : P or p / 카드 내기 : S or s : ");

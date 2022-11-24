@@ -5,8 +5,6 @@ import java.util.Collections;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 import static model.tile.Stack.stackSize;
-import static model.tile.ColorCode.*;
-import static model.tile.ColorCode.RESET;
 
 public class Tile {
     public int tileNum;
