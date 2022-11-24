@@ -44,14 +44,14 @@ public class Stack {
     }
 
     public static String pop(ArrayList<String> tileList){
-        int listSize = stackSize(tileList);
+        int listSize = getStackSize(tileList);
         String popElement = tileList.get(listSize - 1);
         tileList.remove(listSize - 1);
 
         return popElement;
     }
 
-    public static int stackSize(ArrayList<String> list) {
+    public static int getStackSize(ArrayList<String> list) {
         return list.size();
     }
 }

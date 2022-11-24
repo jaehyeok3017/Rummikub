@@ -14,8 +14,8 @@ public class GameInitAndEndSet {
 
         // 플레이어에게 14개씩 카드를 할당
         for (int i = 0; i < 14; i++) {
-            tileDivide(tileList, playerOneTileList);
-            tileDivide(tileList, playerTwoTileList);
+            noPickTileDivide(tileList, playerOneTileList);
+            noPickTileDivide(tileList, playerTwoTileList);
         }
 
         // 초기 배열을 보여줌 (테스트코드)
@@ -26,9 +26,9 @@ public class GameInitAndEndSet {
     }
 
     public static int gameEndCheck(ArrayList<String> tileList, ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList) {
-        int tileListSize = Stack.stackSize(tileList);
-        int playerOneListSize = Stack.stackSize(playerOneTileList);
-        int playerTwoListSize = Stack.stackSize(playerTwoTileList);
+        int tileListSize = Stack.getStackSize(tileList);
+        int playerOneListSize = Stack.getStackSize(playerOneTileList);
+        int playerTwoListSize = Stack.getStackSize(playerTwoTileList);
 
         // 유저1이 타일을 다 내서 게임을 끝내야 하는 경우
         if (playerOneListSize == 0) {

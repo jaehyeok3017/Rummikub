@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static model.game.GameInitAndEndSet.gameEnd;
-import static model.tile.Stack.stackSize;
+import static model.tile.Stack.getStackSize;
 
 public class Tile {
     public int tileNum;
@@ -30,8 +30,8 @@ public class Tile {
         }
     }
 
-    public static void tileDivide(ArrayList<String> tileList, ArrayList<String> playerTileList) {
-        int tileListSize = stackSize(tileList);
+    public static void noPickTileDivide(ArrayList<String> tileList, ArrayList<String> playerTileList) {
+        int tileListSize = getStackSize(tileList);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
         if (tileListSize < 0) gameEnd(0);
@@ -40,7 +40,7 @@ public class Tile {
         else {
             playerTileList.add(Stack.pop(tileList));
 
-            int playerTileListSize = stackSize(playerTileList);
+            int playerTileListSize = getStackSize(playerTileList);
             System.out.println("[" + playerTileList.get(playerTileListSize - 1) + "] 카드가 추가되었습니다.");
         }
     }
