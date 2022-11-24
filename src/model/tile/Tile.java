@@ -10,7 +10,6 @@ public class Tile {
     public int tileNum;
     public TileColor color;
     static ArrayList<String> noPickTileList = new ArrayList<>(106);
-    static ArrayList<String> onBoardTileList = new ArrayList<>(106);
 
     public Tile(int tileNum, TileColor color) {
         this.tileNum = tileNum;
@@ -47,9 +46,5 @@ public class Tile {
 
     public static ArrayList<String> getNoPickTileList() {
         return noPickTileList;
-    }
-
-    public static ArrayList<String> getOnBoardTileList() {
-        return onBoardTileList;
     }
 }
