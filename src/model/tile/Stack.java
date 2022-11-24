@@ -39,7 +39,8 @@ public class Stack {
                 }
             }
         }
-
+        tileList.add(i++, FONT_WHITE + "JOKER" + RESET); //WhiteJoker
+        tileList.add(i, FONT_RED + "JOKER" + RESET); //RedJoker
     }
 
     public static String pop(ArrayList<String> tileList){

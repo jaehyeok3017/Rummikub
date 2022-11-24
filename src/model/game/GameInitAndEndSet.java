@@ -10,7 +10,6 @@ public class GameInitAndEndSet {
                                        ArrayList<String> playerOneTileList, ArrayList<String> playerTwoTileList,
                                        String playerOneName, String playerTwoName) {
         Stack.push(tileList); // 타일 색깔을 매치시키고, ArrayList에 추가
-        jokerTileAdd(tileList); // 조커 타일을 추가시킴
         tileShuffle(tileList); // 타일을 셔플함
 
         // 플레이어에게 14개씩 카드를 할당

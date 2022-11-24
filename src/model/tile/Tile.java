@@ -19,11 +19,6 @@ public class Tile {
         this.color = color;
     }
 
-    public static void jokerTileAdd(ArrayList<String> tileList) {
-        tileList.add(14, FONT_WHITE + "WJ" + RESET); //WhiteJoker
-        tileList.add(14, FONT_RED + "RJ" + RESET); //RedJoker
-    }
-
     public static void playerTileListShow(ArrayList<String> list, String name) {
         System.out.println("\n-----------------\n" + name + " TileList");
         for (String s : list) {

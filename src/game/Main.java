@@ -11,7 +11,6 @@ import static model.tile.Tile.getNoPickTileList;
 
 public class Main {
     public static void main(String[] args) {
-
         // 01. 초기 게임 세팅
         Scanner scan = new Scanner(System.in);
 
@@ -25,7 +24,7 @@ public class Main {
 
         gameInitSetting(getNoPickTileList(), playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
 
-        // 02. 게임 시작 (여기 안에서 자체 루프 돌림)
+        // 02. 게임 시작 (여기 안에서 자체 루프 돌림) + 알아서 종료조건 찾아줌
         gamePlay(getNoPickTileList(), playerOne, playerTwo, playerOne.name, playerTwo.name);
     }
 }
