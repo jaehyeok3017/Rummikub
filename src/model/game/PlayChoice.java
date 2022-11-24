@@ -15,8 +15,14 @@ public class PlayChoice {
         return scan.next();
     }
 
-    public static int playChoiceGenerateOrTurnEnd() {
+    public static int playChoiceGenerateNoRegister() {
         System.out.print("\n카드를 새로 놓기 - 1 / 임시 배열에 다시 놓기 - 2 / 턴 종료 - 3 :: ");
+        return scan.nextInt();
+    }
+
+    public static int playChoiceGenerate() {
+        System.out.print("\n카드를 새로 놓기 - 1 / 기존 배열에 놓기 - 2 / 카드 가져와서 재조합하기 - 3 \n" +
+                "배열 나누기 - 4 / 턴 종료하기 - 5 :: ");
         return scan.nextInt();
     }
 }
