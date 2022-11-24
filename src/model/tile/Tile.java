@@ -52,6 +52,9 @@ public class Tile {
         // 가져갈 카드가 있는 경우
         else {
             playerTileList.add(Stack.pop(tileList));
+
+            int playerTileListSize = stackSize(playerTileList);
+            System.out.println("[" + playerTileList.get(playerTileListSize - 1) + "] 카드가 추가되었습니다.");
         }
     }
 
