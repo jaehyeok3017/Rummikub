@@ -18,8 +18,9 @@ public class Tile {
 
     public static void playerTileListShow(ArrayList<String> list, String name) {
         System.out.println("\n-----------------\n" + name + " TileList");
-        for (String s : list) {
-            System.out.print("[" + s + "], ");
+        for (int i = 0; i<list.size(); i++) {
+            System.out.print(i + " : [" + list.get(i) + "], ");
+            if(i % 7 == 0 && i != 0) System.out.println();
         }
     }
 
