@@ -3,7 +3,7 @@ package model.board;
 import java.util.ArrayList;
 
 public class LinkedList {
-    static class Node {
+    public static class Node {
         private final String data;
         private Node next;
 

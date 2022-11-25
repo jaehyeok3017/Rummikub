@@ -1,6 +1,9 @@
 package model.tile;
 
+import model.board.LinkedList;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static model.tile.ColorCode.*;
 import static model.tile.ColorCode.RESET;
