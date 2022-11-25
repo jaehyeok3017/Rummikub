@@ -1,54 +1,78 @@
 package model.board;
 
-import java.util.ArrayList;
-
-import model.board.LinkedList.*;
 import model.player.Player;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class Board {
-    static ArrayList<Node> onBoardTileList = new ArrayList<>(106);
-    static ArrayList<Node> previousOnBoardTileList = new ArrayList<>(106);
-    static ArrayList<Node> temporaryTileList = new ArrayList<>(106);
+    static ArrayList<LinkedList<Integer>> onBoardTileList = new ArrayList<>(106);
+    static ArrayList<LinkedList<Integer>> previousOnBoardTileList = new ArrayList<>(106);
 
-    static Node onBoardTile = new Node();
-    static Node temporaryTile = new Node();
+    static LinkedList<Integer> temporaryTile;
 
-    public static void turnChanged(){
-        previousOnBoardTileList = onBoardTileList;
+    public static void turnChanged() {
+        Boolean result = turnCheck();
+        if(result){
+            turnIsSuccessed();
+        }
+
+        else{
+            turnIsFailed();
+        }
+    }
+
+    public static Boolean turnCheck() {
+        for (LinkedList<Integer> integers : onBoardTileList) {
+            int elementSize = integers.size();
+
+            if (elementSize < 3) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void turnIsFailed() {
         onBoardTileList = previousOnBoardTileList;
     }
 
-    public static void generateTemporaryTileList(Player player, ArrayList<Node> temporaryTileList,
-                                                 int boardTileListSize) {
+    public static void turnIsSuccessed() {
+        onBoardTileList.add(temporaryTile);
+        temporaryTile = null;
+    }
+
+    public static void generateTemporaryTileList(Player player, LinkedList<Integer> temporaryTile) {
 
     }
 
-    public static void editTemporaryTileList(Player player, ArrayList<Node> temporaryTileList,
-                                             int boardTileListSize) {
+    public static void editTemporaryTileList(Player player, LinkedList<Integer> temporaryTile) {
 
     }
 
-    public static void editOnBoardTileList(Player player, ArrayList<Node> onBoardTileList,
-                                           int boardTileListSize){
+    public static void generateOnBoardTileList(Player player, LinkedList<Integer> temporaryTile,
+                                               ArrayList<LinkedList<Integer>> onBoardTileList){
 
     }
 
-    public static void moveElement(Player player, ArrayList<Node> onBoardTileList, int elementIndex) {
+    public static void editOnBoardTileList(Player player, ArrayList<LinkedList<Integer>> onBoardTileList) {
 
     }
 
-    public static void splitOnBoardTileList(Player player, ArrayList<Node> onBoardTileList, int splitIndex) {
+    public static void moveOnBoardTile(Player player, ArrayList<LinkedList<Integer>> onBoardTileList, int elementIndex) {
 
     }
 
-    public static ArrayList<Node> getOnBoardTileList() {
+    public static void splitOnBoardTileList(Player player, ArrayList<LinkedList<Integer>> onBoardTileList, int splitIndex) {
+
+    }
+
+    public static ArrayList<LinkedList<Integer>> getOnBoardTileList() {
         return onBoardTileList;
     }
 
-    public static int getOnBoardTileListSize(ArrayList<Node> boardTileList) {
-        return boardTileList.size();
+    public static int getOnBoardTileListSize(ArrayList<LinkedList<Integer>> onBoardTileList) {
+        return onBoardTileList.size();
     }
 }

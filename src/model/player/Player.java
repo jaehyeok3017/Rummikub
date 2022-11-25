@@ -11,7 +11,7 @@ public class Player {
 
     public Player(String inputPlayerName) {
         name = inputPlayerName;
-        cardCount = 0;
+        cardCount = 0; //TODO 추후구현
         registerCheck = false;
         isFirstTileDivide = true;
     }
