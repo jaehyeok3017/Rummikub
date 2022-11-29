@@ -93,7 +93,8 @@ public class TileListManage {
         }
     }
 
-    public void tileSortToColor(ArrayList<Tile> tileList) {
+    public void tileSortToColor(ArrayList<Tile> tileList){
+        //TODO 색깔 기준 정렬하기
     }
 
     public void tileSortToNumber(ArrayList<Tile> tileList) {

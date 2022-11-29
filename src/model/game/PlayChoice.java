@@ -9,7 +9,7 @@ public class PlayChoice {
     static Scanner scan = new Scanner(System.in);
 
     public static String playChoicePickOrShow() {
-        System.out.print("\n카드 가져오기 : P or p / 카드 내기 : S or s : ");
+        System.out.print("\n카드 가져오기 : P or p / 카드 내기 : S or s / 카드 정렬하기 : C/c(색깔기준), N/n(숫자기준) : ");
         return scan.next();
     }
 

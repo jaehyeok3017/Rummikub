@@ -26,20 +26,29 @@ public class GamePlaying {
                                        Player playerOne, String playerOneName,
                                        Player playerTwo, String playerTwoName) {
 //        turnChanged();
+        Boolean turnComplete = false;
         if (playerTurn == 1) {
             playerTurn = 2;
-            tileManage.tileListPrint(playerOne.tileList, playerOneName);
-            String playChoice = playChoicePickOrShow();
-            choiceCheck(tileManage, playChoice, playerOne.tileList, playerOneName, playerOne);
-        } else if (playerTurn == 2) {
+
+            do{
+                tileManage.tileListPrint(playerOne.tileList, playerOneName);
+                String playChoice = playChoicePickOrShow();
+                turnComplete = choiceCheck(tileManage, playChoice, playerOne.tileList, playerOneName, playerOne);
+            } while(!turnComplete);
+        }
+
+        else if (playerTurn == 2) {
             playerTurn = 1;
-            tileManage.tileListPrint(playerTwo.tileList, playerTwoName);
-            String playChoice = playChoicePickOrShow();
-            choiceCheck(tileManage, playChoice, playerTwo.tileList, playerTwoName, playerTwo);
+
+            do{
+                tileManage.tileListPrint(playerTwo.tileList, playerTwoName);
+                String playChoice = playChoicePickOrShow();
+                turnComplete = choiceCheck(tileManage, playChoice, playerTwo.tileList, playerTwoName, playerTwo);
+            } while(!turnComplete);
         }
     }
 
-    private static void choiceCheck(TileListManage tileManage,
+    private static Boolean choiceCheck(TileListManage tileManage,
                                     String playChoice,
                                     ArrayList<Tile> playerList, String playerName,
                                     Player player) {
@@ -54,6 +63,20 @@ public class GamePlaying {
                 tileManage.tilePrint(tile);
                 System.out.println("] 카드가 추가되었습니다.");
             }
+
+            return true;
+        }
+
+        // 색깔 기준으로 정렬 (c)
+        else if(Objects.equals(playChoice, "c") || Objects.equals(playChoice, "C")) {
+            tileManage.tileSortToColor(playerList);
+            return false;
+        }
+
+        // 숫자 기준으로 정렬 (n)
+        else if (Objects.equals(playChoice, "n") || Objects.equals(playChoice, "N")) {
+            tileManage.tileSortToNumber(playerList);
+            return false;
         }
 
         // 카드 내기 (s)
@@ -72,9 +95,14 @@ public class GamePlaying {
 
                 }
             }
-        } else {
+
+            return true;
+        }
+
+        else {
             System.out.println("잘못된 선택지입니다. 다시 입력하세요.");
             playChoicePickOrShow();
+            return false;
         }
     }
 }
