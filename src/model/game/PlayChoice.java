@@ -30,7 +30,7 @@ public class PlayChoice {
     }
 
     public static int playChoiceTileIndex(Player player) {
-        tileManage.playerTileListShow(player.tileList, player.name);
+        tileManage.tileListPrint(player.tileList, player.name);
         System.out.println();
         System.out.print("몇 번 인덱스를 고르시겠습니까?, 고르지 않으려면 -1을 입력하세요. (0~" + player.tileList.size() + ") : ");
         return scan.nextInt();

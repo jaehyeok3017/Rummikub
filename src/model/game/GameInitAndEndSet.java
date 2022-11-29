@@ -24,9 +24,9 @@ public class GameInitAndEndSet {
 
         // 초기 배열을 보여줌 (테스트코드)
         // TODO : 테스트 종료 후 지우기 (위의 매개변수 playerOneName, playerTwoName 까지.)
-        tileManage.playerTileListShow(playerOneTileList, playerOneName);
-        tileManage.playerTileListShow(playerTwoTileList, playerTwoName);
-        tileManage.playerTileListShow(noPickTileList, "나머지");
+        tileManage.tileListPrint(playerOneTileList, playerOneName);
+        tileManage.tileListPrint(playerTwoTileList, playerTwoName);
+        tileManage.tileListPrint(noPickTileList, "나머지");
     }
 
     public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {

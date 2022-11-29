@@ -1,6 +1,5 @@
 package model.tile;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,33 +8,33 @@ import static model.game.GameInitAndEndSet.gameEnd;
 public class TileListManage {
     public static ArrayList<Tile> noPickTileList = new ArrayList<Tile>(106);
 
-    public void push(){
+    public void push() {
         int i = 0;
-        for(int r = 0; r<2; r++){
-            for(TileColor tile : TileColor.values()){
-                if(tile == TileColor.RED){
-                    for(int j = 1; j < 14; j++){
+        for (int r = 0; r < 2; r++) {
+            for (TileColor tile : TileColor.values()) {
+                if (tile == TileColor.RED) {
+                    for (int j = 1; j < 14; j++) {
                         noPickTileList.add(i, new Tile(j, TileColor.RED));
                         i++;
                     }
                 }
 
-                if(tile == TileColor.YELLOW){
-                    for(int j = 1; j < 14; j++){
+                if (tile == TileColor.YELLOW) {
+                    for (int j = 1; j < 14; j++) {
                         noPickTileList.add(i, new Tile(j, TileColor.YELLOW));
                         i++;
                     }
                 }
 
-                if(tile == TileColor.BLUE){
-                    for(int j = 1; j < 14; j++){
+                if (tile == TileColor.BLUE) {
+                    for (int j = 1; j < 14; j++) {
                         noPickTileList.add(i, new Tile(j, TileColor.BLUE));
                         i++;
                     }
                 }
 
-                if(tile == TileColor.WHITE){
-                    for(int j = 1; j < 14; j++){
+                if (tile == TileColor.WHITE) {
+                    for (int j = 1; j < 14; j++) {
                         noPickTileList.add(i, new Tile(j, TileColor.WHITE));
                         i++;
                     }
@@ -47,7 +46,7 @@ public class TileListManage {
         noPickTileList.add(i, new Tile(0, TileColor.RED));
     }
 
-    public Tile pop(){
+    public Tile pop() {
         int listSize = getStackSize(noPickTileList);
         Tile popElement = noPickTileList.get(listSize - 1);
         noPickTileList.remove(listSize - 1);
@@ -59,22 +58,36 @@ public class TileListManage {
         return list.size();
     }
 
-    public void playerTileListShow(ArrayList<Tile> list, String name) {
+    public void tilePrint(Tile tile){
+        TileColor color = tile.color;
+
+        if (color == TileColor.RED) {
+            System.out.print(ColorCode.FONT_RED + tile.tileNum + ColorCode.RESET);
+        } else if (color == TileColor.WHITE) {
+            System.out.print(ColorCode.FONT_WHITE + tile.tileNum + ColorCode.RESET);
+        } else if (color == TileColor.BLUE) {
+            System.out.print(ColorCode.FONT_BLUE + tile.tileNum + ColorCode.RESET);
+        } else if (color == TileColor.YELLOW) {
+            System.out.print(ColorCode.FONT_YELLOW + tile.tileNum + ColorCode.RESET);
+        }
+    }
+
+    public void tileListPrint(ArrayList<Tile> list, String name) {
         System.out.println("\n-----------------\n" + name + " TileList");
-        for (int i = 0; i<list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             TileColor color = list.get(i).color;
 
-            if(color == TileColor.RED){
+            if (color == TileColor.RED) {
                 System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).tileNum + ColorCode.RESET + "], ");
-            }else if(color == TileColor.WHITE){
+            } else if (color == TileColor.WHITE) {
                 System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).tileNum + ColorCode.RESET + "], ");
-            }else if(color == TileColor.BLUE){
+            } else if (color == TileColor.BLUE) {
                 System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).tileNum + ColorCode.RESET + "], ");
-            }else if(color == TileColor.YELLOW){
+            } else if (color == TileColor.YELLOW) {
                 System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).tileNum + ColorCode.RESET + "], ");
             }
 
-            if(i % 7 == 0 && i != 0) System.out.println();
+            if (i % 7 == 0 && i != 0) System.out.println();
         }
     }
 
@@ -84,21 +97,25 @@ public class TileListManage {
         }
     }
 
-    public String noPickTileDivide(ArrayList<Tile> tileList, ArrayList<Tile> playerTileList) {
+    public Tile noPickTileDivide(ArrayList<Tile> tileList, ArrayList<Tile> playerTileList) {
+
+
+        // 가져갈 카드가 있는 경우
+        playerTileList.add(pop());
+
+        int playerTileListSize = getStackSize(playerTileList);
+        return playerTileList.get(playerTileListSize - 1);
+    }
+
+    public Boolean isTileListNull(ArrayList<Tile> tileList) {
         int tileListSize = getStackSize(tileList);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
         if (tileListSize < 0) {
             gameEnd(0);
-            return "None";
+            return true;
         }
 
-        // 가져갈 카드가 있는 경우
-        else {
-            playerTileList.add(pop());
-
-            int playerTileListSize = getStackSize(playerTileList);
-            return playerTileList.get(playerTileListSize - 1).toString();
-        }
+        else return false;
     }
 }

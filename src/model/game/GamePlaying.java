@@ -28,12 +28,12 @@ public class GamePlaying {
 //        turnChanged();
         if (playerTurn == 1) {
             playerTurn = 2;
-            tileManage.playerTileListShow(playerOne.tileList, playerOneName);
+            tileManage.tileListPrint(playerOne.tileList, playerOneName);
             String playChoice = playChoicePickOrShow();
             choiceCheck(tileManage, playChoice, playerOne.tileList, playerOneName, playerOne);
         } else if (playerTurn == 2) {
             playerTurn = 1;
-            tileManage.playerTileListShow(playerTwo.tileList, playerTwoName);
+            tileManage.tileListPrint(playerTwo.tileList, playerTwoName);
             String playChoice = playChoicePickOrShow();
             choiceCheck(tileManage, playChoice, playerTwo.tileList, playerTwoName, playerTwo);
         }
@@ -45,8 +45,15 @@ public class GamePlaying {
                                     Player player) {
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
-            String tile = tileManage.noPickTileDivide(noPickTileList, playerList);
-            System.out.println(playerName + "에게 [" + tile + "] 카드가 추가되었습니다.");
+            if(tileManage.isTileListNull(noPickTileList)){
+            }
+
+            else{
+                Tile tile = tileManage.noPickTileDivide(noPickTileList, playerList);
+                System.out.print(playerName + "에게 [");
+                tileManage.tilePrint(tile);
+                System.out.println("] 카드가 추가되었습니다.");
+            }
         }
 
         // 카드 내기 (s)
