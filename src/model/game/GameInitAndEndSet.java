@@ -3,7 +3,10 @@ package model.game;
 import model.tile.Stack;
 
 import java.util.*;
+
+import static model.player.Player.playerTileListShow;
 import static model.tile.Tile.*;
+
 
 public class GameInitAndEndSet {
     public static void gameInitSetting(ArrayList<String> tileList,

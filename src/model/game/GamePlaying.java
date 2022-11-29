@@ -6,6 +6,7 @@ import java.util.*;
 
 import static model.game.GameInitAndEndSet.gameEndCheck;
 import static model.game.PlayChoice.*;
+import static model.player.Player.playerTileListShow;
 import static model.tile.Tile.*;
 
 public class GamePlaying {

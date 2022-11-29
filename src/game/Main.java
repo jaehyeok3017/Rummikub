@@ -1,5 +1,6 @@
 package game;
 
+import model.player.AI;
 import model.player.Player;
 
 import java.util.Scanner;
@@ -26,5 +27,6 @@ public class Main {
 
         // 02. 게임 시작 (여기 안에서 자체 루프 돌림) + 알아서 종료조건 찾아줌
         gamePlay(getNoPickTileList(), playerOne, playerTwo, playerOne.name, playerTwo.name);
+
     }
 }

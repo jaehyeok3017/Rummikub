@@ -16,14 +16,19 @@ public class Tile {
         this.color = color;
     }
 
-    public static void playerTileListShow(ArrayList<String> list, String name) {
-        System.out.println("\n-----------------\n" + name + " TileList");
-        for (int i = 0; i<list.size(); i++) {
-            System.out.print(i + " : [" + list.get(i) + "], ");
-            if(i % 7 == 0 && i != 0) System.out.println();
-        }
+    public void setNumber(int tileNum) {
+        this.tileNum = tileNum;
     }
 
+
+//    public static void playerTileListShow(ArrayList<String> list, String name) {
+//        System.out.println("\n-----------------\n" + name + " TileList");
+//
+//        for (int i = 0; i<list.size(); i++) {
+//            System.out.print(i + " : [" + list.get(i) + "], ");
+//            if(i % 7 == 0 && i != 0) System.out.println();
+//        }
+//    }
     public static void tileShuffle(ArrayList<String> tileList) {
         for (int i = 0; i < 3; i++) {
             Collections.shuffle(tileList);
