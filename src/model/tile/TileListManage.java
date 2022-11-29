@@ -1,9 +1,9 @@
 package model.tile;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import model.game.PlayChoice;
+import model.player.AI;
+
+import java.util.*;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 
@@ -65,31 +65,66 @@ public class TileListManage {
 
         if (color == TileColor.RED) {
             System.out.print(ColorCode.FONT_RED + tile.tileNum + ColorCode.RESET);
-        } else if (color == TileColor.WHITE) {
+        }
+        else if (color == TileColor.WHITE) {
             System.out.print(ColorCode.FONT_WHITE + tile.tileNum + ColorCode.RESET);
-        } else if (color == TileColor.BLUE) {
+        }
+        else if (color == TileColor.BLUE) {
             System.out.print(ColorCode.FONT_BLUE + tile.tileNum + ColorCode.RESET);
-        } else if (color == TileColor.YELLOW) {
+        }
+        else if (color == TileColor.YELLOW) {
             System.out.print(ColorCode.FONT_YELLOW + tile.tileNum + ColorCode.RESET);
         }
     }
 
     public void tileListPrint(ArrayList<Tile> list, String name) {
         System.out.println("\n-----------------\n" + name + " TileList");
+        if(Objects.equals(name, "AI") || Objects.equals(name, "ai")){
+            System.out.println("응애 나 인공지능");
+            tileSortToNumber(list);
+
+            LinkedList<Integer> AITileList = new LinkedList<>();
+
+            for (Tile tile : list) { //연결리스트에 타일 추가해주기
+                AITileList.add(tile.tileNum);
+            }
+            System.out.println(AITileList); //연결리스트 출력 부분 -> 나중에 지워야함
+
+            for(int i = 0; i < AITileList.size(); i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
+                if(Objects.equals(AITileList.get(i), AITileList.get(i + 1)) && Objects.equals(AITileList.get(i + 1), AITileList.get(i + 2))){
+                    //타일 내기
+                }
+            }
+
+
+
+
+            /*
+            if(){ //낼 수 있는 타일이 없을 때
+                AIList.addLast(); //타일 가져가기
+            }
+            */
+
+
+        }
         for (int i = 0; i < list.size(); i++) {
             TileColor color = list.get(i).color;
 
             if (color == TileColor.RED) {
                 System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).tileNum + ColorCode.RESET + "], ");
-            } else if (color == TileColor.WHITE) {
+            }
+            else if (color == TileColor.WHITE) {
                 System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).tileNum + ColorCode.RESET + "], ");
-            } else if (color == TileColor.BLUE) {
+            }
+            else if (color == TileColor.BLUE) {
                 System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).tileNum + ColorCode.RESET + "], ");
-            } else if (color == TileColor.YELLOW) {
+            }
+            else if (color == TileColor.YELLOW) {
                 System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).tileNum + ColorCode.RESET + "], ");
             }
 
-            if (i % 7 == 0 && i != 0) System.out.println();
+            if (i % 7 == 0 && i != 0)
+                System.out.println();
         }
     }
 
@@ -97,12 +132,13 @@ public class TileListManage {
     }
 
     public void tileSortToNumber(ArrayList<Tile> tileList) {
-        Collections.sort(tileList, new Comparator<Tile>() {
+        tileList.sort(new Comparator<Tile>() {
             @Override
             public int compare(Tile o1, Tile o2) {
                 return o1.tileNum - o2.tileNum;
             }
         });
+        System.out.println("정렬 완료");
     }
 
     public void tileShuffle(ArrayList<Tile> tileList) {

@@ -5,10 +5,16 @@ import model.tile.Tile;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class AI extends Player{
     public AI(String inputPlayerName) {
         super("AI");
+
+        if(Objects.equals(name, "AI") || Objects.equals(name, "ai")){
+            System.out.println("인공지능");
+
+        }
     }
 
 

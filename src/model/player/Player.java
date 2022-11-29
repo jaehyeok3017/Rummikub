@@ -1,8 +1,10 @@
 package model.player;
 
 import model.tile.Tile;
+import model.tile.TileListManage.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
     public String name;
