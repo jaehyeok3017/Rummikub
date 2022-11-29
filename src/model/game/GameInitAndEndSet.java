@@ -1,14 +1,14 @@
 package model.game;
 
 import model.tile.Tile;
-import model.tile.TileListManage;
+import model.tile.TileManage;
 
 import java.util.*;
 
-import static model.tile.TileListManage.noPickTileList;
+import static model.tile.TileManage.noPickTileList;
 
 public class GameInitAndEndSet {
-    public static void gameInitSetting(TileListManage tileManage,
+    public static void gameInitSetting(TileManage tileManage,
                                        ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList,
                                        String playerOneName, String playerTwoName) {
         tileManage.push(); // 타일 색깔을 매치시키고, ArrayList에 추가
@@ -28,9 +28,9 @@ public class GameInitAndEndSet {
     }
 
     public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {
-        int tileListSize = TileListManage.getStackSize(tileList);
-        int playerOneListSize = TileListManage.getStackSize(playerOneTileList);
-        int playerTwoListSize = TileListManage.getStackSize(playerTwoTileList);
+        int tileListSize = TileManage.getStackSize(tileList);
+        int playerOneListSize = TileManage.getStackSize(playerOneTileList);
+        int playerTwoListSize = TileManage.getStackSize(playerTwoTileList);
 
         // 유저1이 타일을 다 내서 게임을 끝내야 하는 경우
         if (playerOneListSize == 0) {

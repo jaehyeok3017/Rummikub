@@ -1,11 +1,11 @@
 package model.tile;
 
 public class Tile {
-    public int tileNum;
+    public int number;
     public TileColor color;
 
-    public Tile(int tileNum, TileColor color) {
-        this.tileNum = tileNum;
+    public Tile(int number, TileColor color) {
+        this.number = number;
         this.color = color;
     }
 }

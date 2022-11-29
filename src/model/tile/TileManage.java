@@ -1,13 +1,12 @@
 package model.tile;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 
-public class TileListManage {
+public class TileManage {
     public static ArrayList<Tile> noPickTileList = new ArrayList<Tile>(106);
 
     public void push() {
@@ -64,13 +63,13 @@ public class TileListManage {
         TileColor color = tile.color;
 
         if (color == TileColor.RED) {
-            System.out.print(ColorCode.FONT_RED + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_RED + tile.number + ColorCode.RESET);
         } else if (color == TileColor.WHITE) {
-            System.out.print(ColorCode.FONT_WHITE + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_WHITE + tile.number + ColorCode.RESET);
         } else if (color == TileColor.BLUE) {
-            System.out.print(ColorCode.FONT_BLUE + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_BLUE + tile.number + ColorCode.RESET);
         } else if (color == TileColor.YELLOW) {
-            System.out.print(ColorCode.FONT_YELLOW + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_YELLOW + tile.number + ColorCode.RESET);
         }
     }
 
@@ -80,48 +79,44 @@ public class TileListManage {
             TileColor color = list.get(i).color;
 
             if (color == TileColor.RED) {
-                System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).number + ColorCode.RESET + "], ");
             } else if (color == TileColor.WHITE) {
-                System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).number + ColorCode.RESET + "], ");
             } else if (color == TileColor.BLUE) {
-                System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).number + ColorCode.RESET + "], ");
             } else if (color == TileColor.YELLOW) {
-                System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).number + ColorCode.RESET + "], ");
             }
 
             if (i % 7 == 0 && i != 0) System.out.println();
         }
     }
 
-    public void tileSortToColor(ArrayList<Tile> tileList){
-        //TODO 색깔 기준 정렬하기
-    }
-
-    public void tileSortToNumber(ArrayList<Tile> tileList) {
-        Collections.sort(tileList, new Comparator<Tile>() {
+    public void tileSortToNumber(ArrayList<Tile> list) {
+        Collections.sort(list, new Comparator<Tile>() {
             @Override
             public int compare(Tile o1, Tile o2) {
-                return o1.tileNum - o2.tileNum;
+                return o1.number - o2.number;
             }
         });
     }
 
-    public void tileShuffle(ArrayList<Tile> tileList) {
+    public void tileShuffle(ArrayList<Tile> list) {
         for (int i = 0; i < 3; i++) {
-            Collections.shuffle(tileList);
+            Collections.shuffle(list);
         }
     }
 
-    public Tile noPickTileDivide(ArrayList<Tile> playerTileList) {
+    public Tile noPickTileDivide(ArrayList<Tile> list) {
         // 가져갈 카드가 있는 경우
-        playerTileList.add(pop());
+        list.add(pop());
 
-        int playerTileListSize = getStackSize(playerTileList);
-        return playerTileList.get(playerTileListSize - 1);
+        int playerTileListSize = getStackSize(list);
+        return list.get(playerTileListSize - 1);
     }
 
-    public Boolean isTileListNull(ArrayList<Tile> tileList) {
-        int tileListSize = getStackSize(tileList);
+    public Boolean isTileListNull(ArrayList<Tile> list) {
+        int tileListSize = getStackSize(list);
 
         // 가져갈 카드가 없어서 게임이 끝나야 하는 경우
         if (tileListSize < 0) {

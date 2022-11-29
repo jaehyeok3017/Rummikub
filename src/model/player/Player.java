@@ -8,13 +8,11 @@ public class Player {
     public String name;
     public int cardCount;
     public boolean registerCheck;
-    public static boolean isFirstTileDivide;
     public ArrayList<Tile> tileList = new ArrayList<Tile>(106);
 
     public Player(String inputPlayerName) {
         name = inputPlayerName;
         cardCount = 0; //TODO 추후구현
         registerCheck = false;
-        isFirstTileDivide = true;
     }
 }

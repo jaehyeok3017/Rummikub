@@ -1,12 +1,12 @@
 package game;
 
+import model.game.GamePlaying;
 import model.player.Player;
-import model.tile.TileListManage;
+import model.tile.TileManage;
 
 import java.util.Scanner;
 
 import static model.game.GameInitAndEndSet.gameInitSetting;
-import static model.game.GamePlaying.gamePlay;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,10 +21,11 @@ public class Main {
         String playerTwoNameInput = scan.next();
         Player playerTwo = new Player(playerTwoNameInput);
 
-        TileListManage tileManage = new TileListManage();
+        TileManage tileManage = new TileManage();
         gameInitSetting(tileManage, playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
 
         // 02. 게임 시작 (여기 안에서 자체 루프 돌림) + 알아서 종료조건 찾아줌
-        gamePlay(tileManage, playerOne, playerTwo, playerOne.name, playerTwo.name);
+        GamePlaying gamePlaying = new GamePlaying(tileManage, playerOne, playerTwo);
+        gamePlaying.gamePlay();
     }
 }
