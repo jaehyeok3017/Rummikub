@@ -1,7 +1,9 @@
 package model.tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 
@@ -91,15 +93,25 @@ public class TileListManage {
         }
     }
 
+    public void tileSortToColor(ArrayList<Tile> tileList) {
+    }
+
+    public void tileSortToNumber(ArrayList<Tile> tileList) {
+        Collections.sort(tileList, new Comparator<Tile>() {
+            @Override
+            public int compare(Tile o1, Tile o2) {
+                return o1.tileNum - o2.tileNum;
+            }
+        });
+    }
+
     public void tileShuffle(ArrayList<Tile> tileList) {
         for (int i = 0; i < 3; i++) {
             Collections.shuffle(tileList);
         }
     }
 
-    public Tile noPickTileDivide(ArrayList<Tile> tileList, ArrayList<Tile> playerTileList) {
-
-
+    public Tile noPickTileDivide(ArrayList<Tile> playerTileList) {
         // 가져갈 카드가 있는 경우
         playerTileList.add(pop());
 

@@ -8,8 +8,6 @@ import java.util.*;
 import static model.tile.TileListManage.noPickTileList;
 
 public class GameInitAndEndSet {
-    private static Tile tile;
-
     public static void gameInitSetting(TileListManage tileManage,
                                        ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList,
                                        String playerOneName, String playerTwoName) {
@@ -18,8 +16,8 @@ public class GameInitAndEndSet {
 
         // 플레이어에게 14개씩 카드를 할당
         for (int i = 0; i < 14; i++) {
-            tileManage.noPickTileDivide(noPickTileList, playerOneTileList);
-            tileManage.noPickTileDivide(noPickTileList, playerTwoTileList);
+            tileManage.noPickTileDivide(playerOneTileList);
+            tileManage.noPickTileDivide(playerTwoTileList);
         }
 
         // 초기 배열을 보여줌 (테스트코드)

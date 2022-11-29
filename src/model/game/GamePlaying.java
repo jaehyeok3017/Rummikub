@@ -49,7 +49,7 @@ public class GamePlaying {
             }
 
             else{
-                Tile tile = tileManage.noPickTileDivide(noPickTileList, playerList);
+                Tile tile = tileManage.noPickTileDivide(playerList);
                 System.out.print(playerName + "에게 [");
                 tileManage.tilePrint(tile);
                 System.out.println("] 카드가 추가되었습니다.");

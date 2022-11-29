@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import static model.game.PlayChoice.playChoiceTileIndex;
 
 public class BoardAndTurn {
-    private static TileListManage tileManage;
     static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
     static ArrayList<LinkedList<Tile>> previousOnBoardTileList = new ArrayList<>(106);
 
