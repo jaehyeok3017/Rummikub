@@ -2,19 +2,14 @@ package model.board;
 
 import model.player.Player;
 import model.tile.Tile;
-import model.tile.TileListManage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static model.game.PlayChoice.playChoiceTileIndex;
+import static model.board.Board.*;
+import static model.game.PlayChoice.tileIndexPick;
 
-public class BoardAndTurn {
-    static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
-    static ArrayList<LinkedList<Tile>> previousOnBoardTileList = new ArrayList<>(106);
-
-    static LinkedList<Tile> temporaryTile;
-
+public class BoardManage {
     public void turnChanged() {
         Boolean result = turnCheck();
         if (result) {
@@ -38,8 +33,8 @@ public class BoardAndTurn {
 
     public void turnIsFailed() {
         System.out.println("조건이 충족되지 않았으므로, 기존 배열로 돌아갑니다.");
-        onBoardTileList.removeAll(previousOnBoardTileList);
-        onBoardTileList.addAll(previousOnBoardTileList);
+        onBoardTileList.removeAll(preOnBoardTileList);
+        onBoardTileList.addAll(preOnBoardTileList);
         temporaryTile = null;
     }
 
@@ -51,15 +46,16 @@ public class BoardAndTurn {
     public static void generateTemporaryTileList(Player player) {
         int result = 0;
         while (true) {
-            result = playChoiceTileIndex(player);
+            result = tileIndexPick(player);
             if (result == -1) break;
 
             if (result < -1 || result > player.tileList.size()){
                 System.out.println("잘못된 값을 입력하였습니다. 다시 입력하세요");
-                playChoiceTileIndex(player);
+                tileIndexPick(player);
             }
 
             temporaryTile.add(player.tileList.get(result));
+
         }
     }
 

@@ -1,13 +1,10 @@
 package model.tile;
 
-import model.game.PlayChoice;
-import model.player.AI;
-
 import java.util.*;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 
-public class TileListManage {
+public class TileManage {
     public static ArrayList<Tile> noPickTileList = new ArrayList<Tile>(106);
 
     public void push() {
@@ -64,16 +61,16 @@ public class TileListManage {
         TileColor color = tile.color;
 
         if (color == TileColor.RED) {
-            System.out.print(ColorCode.FONT_RED + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_RED + tile.number + ColorCode.RESET);
         }
         else if (color == TileColor.WHITE) {
-            System.out.print(ColorCode.FONT_WHITE + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_WHITE + tile.number + ColorCode.RESET);
         }
         else if (color == TileColor.BLUE) {
-            System.out.print(ColorCode.FONT_BLUE + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_BLUE + tile.number + ColorCode.RESET);
         }
         else if (color == TileColor.YELLOW) {
-            System.out.print(ColorCode.FONT_YELLOW + tile.tileNum + ColorCode.RESET);
+            System.out.print(ColorCode.FONT_YELLOW + tile.number + ColorCode.RESET);
         }
     }
 
@@ -86,7 +83,7 @@ public class TileListManage {
             LinkedList<Integer> AITileList = new LinkedList<>();
 
             for (Tile tile : list) { //연결리스트에 타일 추가해주기
-                AITileList.add(tile.tileNum);
+                AITileList.add(tile.number);
             }
             System.out.println(AITileList); //연결리스트 출력 부분 -> 나중에 지워야함
 
@@ -111,16 +108,16 @@ public class TileListManage {
             TileColor color = list.get(i).color;
 
             if (color == TileColor.RED) {
-                System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.WHITE) {
-                System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.BLUE) {
-                System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.YELLOW) {
-                System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).tileNum + ColorCode.RESET + "], ");
+                System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).number + ColorCode.RESET + "], ");
             }
 
             if (i % 7 == 0 && i != 0)
@@ -135,7 +132,7 @@ public class TileListManage {
         tileList.sort(new Comparator<Tile>() {
             @Override
             public int compare(Tile o1, Tile o2) {
-                return o1.tileNum - o2.tileNum;
+                return o1.number - o2.number;
             }
         });
         System.out.println("정렬 완료");
