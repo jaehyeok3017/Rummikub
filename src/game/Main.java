@@ -1,14 +1,12 @@
 package game;
 
-import model.player.AI;
 import model.player.Player;
+import model.tile.TileListManage;
 
 import java.util.Scanner;
 
 import static model.game.GameInitAndEndSet.gameInitSetting;
 import static model.game.GamePlaying.gamePlay;
-import static model.tile.Tile.getNoPickTileList;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -23,10 +21,10 @@ public class Main {
         String playerTwoNameInput = scan.next();
         Player playerTwo = new Player(playerTwoNameInput);
 
-        gameInitSetting(getNoPickTileList(), playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
+        TileListManage tileManage = new TileListManage();
+        gameInitSetting(tileManage, playerOne.tileList, playerTwo.tileList, playerOne.name, playerTwo.name);
 
         // 02. 게임 시작 (여기 안에서 자체 루프 돌림) + 알아서 종료조건 찾아줌
-        gamePlay(getNoPickTileList(), playerOne, playerTwo, playerOne.name, playerTwo.name);
-
+        gamePlay(tileManage, playerOne, playerTwo, playerOne.name, playerTwo.name);
     }
 }
