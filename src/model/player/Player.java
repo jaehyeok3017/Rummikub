@@ -1,5 +1,7 @@
 package model.player;
 
+import model.tile.Tile;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -7,7 +9,7 @@ public class Player {
     public int cardCount;
     public boolean registerCheck;
     public static boolean isFirstTileDivide;
-    public ArrayList<String> tileList = new ArrayList<String>(106);
+    public ArrayList<Tile> tileList = new ArrayList<Tile>(106);
 
     public Player(String inputPlayerName) {
         name = inputPlayerName;
