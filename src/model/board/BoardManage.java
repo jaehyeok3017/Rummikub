@@ -61,13 +61,14 @@ public class BoardManage {
             result = tileIndexPick(player);
             if (result == -1) break;
 
-            if (result < -1 || result > player.tileList.size()) {
+            if (result < -1 || result >= player.tileList.size()) {
                 System.out.println("잘못된 값을 입력하였습니다. 다시 입력하세요");
-                tileIndexPick(player);
             }
 
-            temporaryTile.add(player.tileList.get(result));
-            player.tileList.remove(result);
+            else{
+                temporaryTile.add(player.tileList.get(result));
+                player.tileList.remove(result);
+            }
         }
 
         boolean check = generateTempCheck();
