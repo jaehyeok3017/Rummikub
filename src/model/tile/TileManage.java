@@ -96,6 +96,8 @@ public class TileManage {
                     System.out.print("[" + ColorCode.FONT_YELLOW + list.get(i).get(j).number + ColorCode.RESET + "]");
                 }
             }
+
+            if(list.get(i).size() > 1) System.out.println();
         }
 
         System.out.println();

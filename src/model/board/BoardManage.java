@@ -41,7 +41,7 @@ public class BoardManage {
 
     public void turnIsFailed(Player player) {
         System.out.println("조건이 충족되지 않았으므로, 기존 배열로 돌아갑니다.");
-        onBoardTileList.removeAll(preOnBoardTileList);
+        onBoardTileList = new ArrayList<>(106);
         onBoardTileList.addAll(preOnBoardTileList);
         player.tileList.addAll(temporaryTile);
         temporaryTile = new LinkedList<Tile>();
@@ -49,6 +49,8 @@ public class BoardManage {
 
     public void turnIsSuccessed() {
         onBoardTileList.add(temporaryTile);
+        preOnBoardTileList = new ArrayList<>(106);
+        preOnBoardTileList.addAll(onBoardTileList);
         temporaryTile = new LinkedList<Tile>();
     }
 
@@ -114,10 +116,6 @@ public class BoardManage {
         }
 
         else return false;
-    }
-
-    public void editTemporaryTileList(Player player) {
-
     }
 
     public void editOnBoardTileList(Player player) {
