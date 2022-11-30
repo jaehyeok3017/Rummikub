@@ -97,7 +97,8 @@ public class TileManage {
                 }
             }
 
-            if(list.get(i).size() > 1) System.out.println();
+            if(list.get(i).size() > 1) System.out.print("   ");
+            if(list.get(i).size() > 1 && i % 5 == 0) System.out.println();
         }
 
         System.out.println();
