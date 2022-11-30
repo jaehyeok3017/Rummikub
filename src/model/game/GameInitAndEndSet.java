@@ -9,8 +9,7 @@ import static model.tile.TileManage.noPickTileList;
 
 public class GameInitAndEndSet {
     public static void gameInitSetting(TileManage tileManage,
-                                       ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList,
-                                       String playerOneName, String playerTwoName) {
+                                       ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {
         tileManage.push(); // 타일 색깔을 매치시키고, ArrayList에 추가
         tileManage.tileShuffle(noPickTileList); // 타일을 셔플함
 
@@ -19,12 +18,6 @@ public class GameInitAndEndSet {
             tileManage.noPickTileDivide(playerOneTileList);
             tileManage.noPickTileDivide(playerTwoTileList);
         }
-
-        // 초기 배열을 보여줌 (테스트코드)
-        // TODO : 테스트 종료 후 지우기 (위의 매개변수 playerOneName, playerTwoName 까지.)
-        tileManage.tileListPrint(playerOneTileList, playerOneName);
-        tileManage.tileListPrint(playerTwoTileList, playerTwoName);
-        tileManage.tileListPrint(noPickTileList, "나머지");
     }
 
     public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {

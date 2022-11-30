@@ -120,14 +120,6 @@ public class BoardManage {
 
     }
 
-    public void saveTemporaryTileList(Player player) {
-
-    }
-
-    public void generateOnBoardTileList(Player player) {
-
-    }
-
     public void editOnBoardTileList(Player player) {
 
     }
