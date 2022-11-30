@@ -7,6 +7,7 @@ import model.tile.TileManage;
 
 import java.util.*;
 
+import static model.board.BoardManage.onBoardTileList;
 import static model.game.GameInitAndEndSet.gameEndCheck;
 import static model.game.PlayChoice.*;
 import static model.tile.TileManage.noPickTileList;
@@ -14,11 +15,13 @@ import static model.tile.TileManage.noPickTileList;
 public class GamePlaying {
     private static int playerTurn = 1;
 
+    private final BoardManage boardManage;
     private final TileManage tileListManage;
     private final Player player1;
     private final Player player2;
 
-    public GamePlaying(TileManage tileListManage, Player player1, Player player2) {
+    public GamePlaying(BoardManage boardManage, TileManage tileListManage, Player player1, Player player2) {
+        this.boardManage = boardManage;
         this.tileListManage = tileListManage;
         this.player1 = player1;
         this.player2 = player2;
@@ -32,20 +35,24 @@ public class GamePlaying {
 
     private void gamePlayToTurn() {
         boolean turnComplete = false;
+        String playChoice;
 
-        do{
+        do {
+            tileListManage.tileLinkListPrint(onBoardTileList);
             if (playerTurn == 1) {
                 tileListManage.tileListPrint(player1.tileList, player1.name);
             } else {
                 tileListManage.tileListPrint(player2.tileList, player2.name);
             }
-            String playChoice = pickOrShow();
+            playChoice = pickOrShow();
             turnComplete = choiceCheck(playChoice);
-        } while(!turnComplete);
+        } while (!turnComplete);
 
         if (playerTurn == 1) {
+            boardManage.turnChanged(player1);
             playerTurn = 2;
         } else {
+            boardManage.turnChanged(player2);
             playerTurn = 1;
         }
     }
@@ -67,10 +74,8 @@ public class GamePlaying {
 
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
-            if(tileListManage.isTileListNull(noPickTileList)){
-            }
-
-            else{
+            if (tileListManage.isTileListNull(noPickTileList)) {
+            } else {
                 Tile tile = tileListManage.noPickTileDivide(playerList);
                 System.out.print(playerName + "에게 [");
                 tileListManage.tilePrint(tile);
@@ -89,20 +94,20 @@ public class GamePlaying {
         // 카드 내기 (s)
         else if (Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")) {
             if (!player.registerCheck) {
-                int registerResult = 0;
-                do{
-                    registerResult = generateNoRegister();
-                    BoardManage.generateTemporaryTileList(player);
-                } while(registerResult != 3);
+                boardManage.generateTemporaryTileList(player);
             } else {
                 String choiceAddOrEdit = addOrEdit();
                 if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
-
+                    boardManage.generateTemporaryTileList(player);
                 } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
 
                 }
             }
 
+            return false;
+        }
+
+        else if (Objects.equals(playChoice, "e") || Objects.equals(playChoice, "E")) {
             return true;
         }
 

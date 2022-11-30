@@ -2,28 +2,36 @@ package model.board;
 
 import model.player.Player;
 import model.tile.Tile;
+import model.tile.TileManage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static model.board.Board.*;
 import static model.game.PlayChoice.tileIndexPick;
 
 public class BoardManage {
-    public void turnChanged() {
-        Boolean result = turnCheck();
+    public static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
+    static ArrayList<LinkedList<Tile>> preOnBoardTileList = new ArrayList<>(106);
+
+    static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
+    private final TileManage tileManage;
+
+    public BoardManage(TileManage tileManage) {
+        this.tileManage = tileManage;
+    }
+
+    public void turnChanged(Player player) {
+        Boolean result = turnCheck(player);
         if (result) {
             turnIsSuccessed();
         } else {
-            turnIsFailed();
+            turnIsFailed(player);
         }
     }
 
-    public Boolean turnCheck() {
-        for (LinkedList<Tile> integers : onBoardTileList) {
-            int elementSize = integers.size();
-
-            if (elementSize < 3) {
+    public boolean turnCheck(Player player) {
+        for (int i = 0; i < onBoardTileList.size(); i++) {
+            if (onBoardTileList.get(i).size() < 3 && player.registerCheck) {
                 return false;
             }
         }
@@ -31,80 +39,107 @@ public class BoardManage {
         return true;
     }
 
-    public void turnIsFailed() {
+    public void turnIsFailed(Player player) {
         System.out.println("조건이 충족되지 않았으므로, 기존 배열로 돌아갑니다.");
         onBoardTileList.removeAll(preOnBoardTileList);
         onBoardTileList.addAll(preOnBoardTileList);
-        temporaryTile = null;
+        player.tileList.addAll(temporaryTile);
+        temporaryTile = new LinkedList<Tile>();
     }
 
     public void turnIsSuccessed() {
         onBoardTileList.add(temporaryTile);
-        temporaryTile = null;
+        temporaryTile = new LinkedList<Tile>();
     }
 
-    public static void generateTemporaryTileList(Player player) {
+    public void generateTemporaryTileList(Player player) {
         int result = 0;
         while (true) {
+            tileManage.tileListPrint(player.tileList, player.name);
+            System.out.print("\n\n현재 임시 배열 : ");
+            tileManage.tileLinkPrint(temporaryTile);
             result = tileIndexPick(player);
             if (result == -1) break;
 
-            if (result < -1 || result > player.tileList.size()){
+            if (result < -1 || result > player.tileList.size()) {
                 System.out.println("잘못된 값을 입력하였습니다. 다시 입력하세요");
                 tileIndexPick(player);
             }
 
             temporaryTile.add(player.tileList.get(result));
-
+            player.tileList.remove(result);
         }
+
+        boolean check = generateTempCheck();
+        if(check) turnIsSuccessed();
+        else turnIsFailed(player);
     }
 
-    // TODO Boolean으로 자료형 변경
-    public static void generateTempCheck(){
+    public Boolean generateTempCheck() {
         int size = temporaryTile.size();
 
-        if(size < 3){
+        if (size < 3) {
             System.out.println("임시 배열의 카드가 3개 미만입니다.");
-//            return false;
+            return false;
         }
 
-        Boolean sameNumber = true;
-        Boolean sameColor = true;
+        Boolean sameNumber = false;
+        int numberStack = 0;
 
-        for(int i = 0; i < temporaryTile.size() - 3; i++){
+        Boolean sameColor = false;
+        int colorStack = 0;
 
+        for (int i = 0; i < size - 1; i++) {
+            if ((temporaryTile.get(i).number == temporaryTile.get(i + 1).number - 1) && (temporaryTile.get(i).color == temporaryTile.get(i+1).color)) {
+                colorStack += 1;
+            }
+
+            if ((temporaryTile.get(i).number == temporaryTile.get(i + 1).number) && (temporaryTile.get(i).color != temporaryTile.get(i+1).color)) {
+                numberStack += 1;
+            }
+
+            if (temporaryTile.get(i).number == 999) {
+                colorStack += 1;
+                numberStack += 1;
+            }
         }
+
+        if (size - 1 == colorStack) {
+            return true;
+        }
+
+        else if (size - 1 == numberStack) {
+            return true;
+        }
+
+        else return false;
     }
 
-    public static void editTemporaryTileList(Player player, LinkedList<Integer> temporaryTile) {
-
-    }
-
-    public static void saveTemporaryTileList(Player player, LinkedList<Integer> temporaryTile) {
-
-    }
-
-    public static void generateOnBoardTileList(Player player, LinkedList<Integer> temporaryTile,
-                                               ArrayList<LinkedList<Integer>> onBoardTileList) {
-
-    }
-
-    public static void editOnBoardTileList(Player player, ArrayList<LinkedList<Integer>> onBoardTileList) {
+    public void editTemporaryTileList(Player player) {
 
     }
 
-    public static void moveOnBoardTile(Player player, ArrayList<LinkedList<Integer>> onBoardTileList, int elementIndex) {
+    public void saveTemporaryTileList(Player player) {
 
     }
 
-    public static void splitOnBoardTileList(Player player, ArrayList<LinkedList<Integer>> onBoardTileList, int splitIndex) {
+    public void generateOnBoardTileList(Player player) {
 
     }
 
-//    public static ArrayList<LinkedList<Integer>> getOnBoardTileList() {
-//    }
+    public void editOnBoardTileList(Player player) {
 
-    public static int getOnBoardTileListSize(ArrayList<LinkedList<Integer>> onBoardTileList) {
+    }
+
+    public void moveOnBoardTile(Player player, int elementIndex) {
+
+    }
+
+    public void splitOnBoardTileList(Player player, int splitIndex) {
+
+    }
+
+    public int getOnBoardTileListSize() {
         return onBoardTileList.size();
     }
 }

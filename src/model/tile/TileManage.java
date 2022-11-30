@@ -41,8 +41,8 @@ public class TileManage {
             }
         }
 
-        noPickTileList.add(i++, new Tile(0, TileColor.WHITE));
-        noPickTileList.add(i, new Tile(0, TileColor.RED));
+        noPickTileList.add(i++, new Tile(999, TileColor.WHITE));
+        noPickTileList.add(i, new Tile(999, TileColor.RED));
     }
 
     public Tile pop() {
@@ -71,6 +71,54 @@ public class TileManage {
         }
         else if (color == TileColor.YELLOW) {
             System.out.print(ColorCode.FONT_YELLOW + tile.number + ColorCode.RESET);
+        }
+    }
+
+    public void tileLinkListPrint(ArrayList<LinkedList<Tile>> list){
+        System.out.println();
+
+        for (int i = 0; i < list.size(); i++) {
+            for(int j = 0; j < list.get(i).size(); j++){
+                TileColor color = list.get(i).get(j).color;
+
+                if (color == TileColor.RED) {
+                    if(list.get(i).get(j).number == 999) System.out.print("[" + ColorCode.FONT_RED + "JOKER" + ColorCode.RESET + "]");
+                    else System.out.print("[" + ColorCode.FONT_RED + list.get(i).get(j).number + ColorCode.RESET + "]");
+                }
+                else if (color == TileColor.WHITE) {
+                    if(list.get(i).get(j).number == 999) System.out.print("[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "]");
+                    else System.out.print("[" + ColorCode.FONT_WHITE + list.get(i).get(j).number + ColorCode.RESET + "]");
+                }
+                else if (color == TileColor.BLUE) {
+                    System.out.print("[" + ColorCode.FONT_BLUE + list.get(i).get(j).number + ColorCode.RESET + "]");
+                }
+                else if (color == TileColor.YELLOW) {
+                    System.out.print("[" + ColorCode.FONT_YELLOW + list.get(i).get(j).number + ColorCode.RESET + "]");
+                }
+            }
+        }
+
+        System.out.println();
+    }
+
+    public void tileLinkPrint(LinkedList<Tile> tile){
+        for(int i = 0; i < tile.size(); i++){
+            TileColor color = tile.get(i).color;
+
+            if (color == TileColor.RED) {
+                if(tile.get(i).number == 999) System.out.print("[" + ColorCode.FONT_RED + "JOKER" + ColorCode.RESET + "]");
+                else System.out.print("[" + ColorCode.FONT_RED + tile.get(i).number + ColorCode.RESET + "]");
+            }
+            else if (color == TileColor.WHITE) {
+                if(tile.get(i).number == 999) System.out.print("[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "]");
+                else System.out.print("[" + ColorCode.FONT_WHITE + tile.get(i).number + ColorCode.RESET + "]");
+            }
+            else if (color == TileColor.BLUE) {
+                System.out.print("[" + ColorCode.FONT_BLUE + tile.get(i).number + ColorCode.RESET + "]");
+            }
+            else if (color == TileColor.YELLOW) {
+                System.out.print("[" + ColorCode.FONT_YELLOW + tile.get(i).number + ColorCode.RESET + "]");
+            }
         }
     }
 
@@ -108,20 +156,19 @@ public class TileManage {
             TileColor color = list.get(i).color;
 
             if (color == TileColor.RED) {
-                System.out.print(i + " : [" + ColorCode.FONT_RED + list.get(i).number + ColorCode.RESET + "], ");
+                if(list.get(i).number == 999) System.out.print(i + ":[" + ColorCode.FONT_RED + "JOKER" + ColorCode.RESET + "], ");
+                else System.out.print(i + ":[" + ColorCode.FONT_RED + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.WHITE) {
-                System.out.print(i + " : [" + ColorCode.FONT_WHITE + list.get(i).number + ColorCode.RESET + "], ");
+                if(list.get(i).number == 999) System.out.print(i + ":[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "], ");
+                else System.out.print(i + ":[" + ColorCode.FONT_WHITE + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.BLUE) {
-                System.out.print(i + " : [" + ColorCode.FONT_BLUE + list.get(i).number + ColorCode.RESET + "], ");
+                System.out.print(i + ":[" + ColorCode.FONT_BLUE + list.get(i).number + ColorCode.RESET + "], ");
             }
             else if (color == TileColor.YELLOW) {
-                System.out.print(i + " : [" + ColorCode.FONT_YELLOW + list.get(i).number + ColorCode.RESET + "], ");
+                System.out.print(i + ":[" + ColorCode.FONT_YELLOW + list.get(i).number + ColorCode.RESET + "], ");
             }
-
-            if (i % 7 == 0 && i != 0)
-                System.out.println();
         }
     }
 
