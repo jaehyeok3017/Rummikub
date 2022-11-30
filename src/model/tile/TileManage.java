@@ -130,15 +130,9 @@ public class TileManage {
             System.out.println("응애 나 인공지능");
             tileSortToNumber(list);
 
-            LinkedList<Integer> AITileList = new LinkedList<>();
 
-            for (Tile tile : list) { //연결리스트에 타일 추가해주기
-                AITileList.add(tile.number);
-            }
-            System.out.println(AITileList); //연결리스트 출력 부분 -> 나중에 지워야함
-
-            for(int i = 0; i < AITileList.size(); i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
-                if(Objects.equals(AITileList.get(i), AITileList.get(i + 1)) && Objects.equals(AITileList.get(i + 1), AITileList.get(i + 2))){
+            for(int i = 0; i < list.size(); i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
+                if(Objects.equals(list.get(i), list.get(i + 1)) && Objects.equals(list.get(i + 1), list.get(i + 2))){
                     //타일 내기
                 }
             }
