@@ -161,6 +161,7 @@ public class GamePlaying {
             player = player2;
         }
 
+        // TODO
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
             if (tileListManage.isTileListNull(noPickTileList)) {
@@ -189,7 +190,7 @@ public class GamePlaying {
                 if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
                     boardManage.generateTemporaryTileList(player);
                 } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
-
+                    boardManage.editOnBoardTileList(player);
                 }
             }
 

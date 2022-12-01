@@ -18,21 +18,31 @@ public class PlayChoice {
         return scan.next();
     }
 
-    public static int generate() {
-        System.out.print("\n카드를 새로 놓기 : 1 / 기존 배열에 놓기 : 2 / 카드 가져와서 재조합하기 : 3 \n" +
-                "배열 나누기 : 4 / 다시 선택하기 : 5 / 턴 종료하기 : -1 :: ");
+    public static int editCheck() {
+        System.out.print("\n기존 배열을 수정하기 : 1 / 배열 나누기 : 2 / 배열 요소 가져오기 : 3 / 완료 : -1 :: ");
         return scan.nextInt();
     }
 
     public static int onBoardTileIndexPick(){
         System.out.println();
-        System.out.print("몇 번 인덱스를 고르시겠습니까?, 완료하려면 -1을 입력하세요. (0~" + (onBoardTileList.size() - 1) + ") : ");
+        System.out.print("인덱스를 고르세요. (0~" + (onBoardTileList.size() - 1) + ") : ");
         return scan.nextInt();
     }
 
     public static int tileIndexPick(Player player) {
         System.out.println();
-        System.out.print("몇 번 인덱스를 고르시겠습니까?, 완료하려면 -1을 입력하세요. (0~" + (player.tileList.size() - 1) + ") : ");
+        System.out.print("인덱스를 고르세요, 완료하려면 -1을 입력하세요. (0~" + (player.tileList.size() - 1) + ") : ");
+        return scan.nextInt();
+    }
+
+    public static int detailIndexPick(int index){
+        System.out.println();
+        System.out.print("수정 기준 인덱스를 고르세요. (0~" + (onBoardTileList.get(index).size() - 1) + ") : ");
+        return scan.nextInt();
+    }
+
+    public static int workPick() {
+        System.out.print("\n요소 앞에 놓기 : 1 / 요소 뒤에 놓기: 2 :: ");
         return scan.nextInt();
     }
 }

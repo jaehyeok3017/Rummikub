@@ -7,7 +7,7 @@ import model.tile.TileManage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static model.game.PlayChoice.tileIndexPick;
+import static model.game.PlayChoice.*;
 
 public class BoardManage {
     public static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
@@ -157,7 +157,46 @@ public class BoardManage {
     }
 
     public void editOnBoardTileList(Player player) {
-        
+        int result = 0;
+        while(true){
+            int edit = editCheck();
+            if(edit == -1) break;
+
+            tileManage.tileLinkListPrint(onBoardTileList);
+            int index = onBoardTileIndexPick();
+            if(index > onBoardTileList.size() - 1) {
+                System.out.println("인덱스의 범위가 잘못되었습니다.");
+                continue;
+            }
+
+            tileManage.tileLinkPrint(onBoardTileList.get(index));
+            int detailIndex = detailIndexPick(index);
+            if(detailIndex > onBoardTileList.get(index).size() - 1){
+                System.out.println("인덱스의 범위가 잘못되었습니다.");
+                continue;
+            }
+
+            int work = workPick();
+            tileManage.tileListPrint(player.tileList, player.name);
+            result = tileIndexPick(player);
+            if (result == -1) break;
+
+            if (result < -1 || result >= player.tileList.size()) {
+                System.out.println("잘못된 값을 입력하였습니다. 다시 입력하세요");
+            }
+
+            else{
+                if(work == 1){
+                    onBoardTileList.get(index).add(detailIndex, player.tileList.get(result));
+                    player.tileList.remove(result);
+                }
+
+                else if(work == 2){
+                    onBoardTileList.get(index).add(detailIndex + 1, player.tileList.get(result));
+                    player.tileList.remove(result);
+                }
+            }
+        }
     }
 
     public void moveOnBoardTile(Player player, int elementIndex) {
