@@ -43,7 +43,7 @@ public class GamePlaying {
                 tileListManage.tileListPrint(player1.tileList, player1.name);
 
                 if(Objects.equals(player1.name, "ai") || Objects.equals(player1.name, "AI")){
-                    aiChoice();
+                    turnComplete = aiChoice();
                 } else {
                     playChoice = pickOrShow();
                     turnComplete = choiceCheck(playChoice);
@@ -52,7 +52,7 @@ public class GamePlaying {
                 tileListManage.tileListPrint(player2.tileList, player2.name);
 
                 if(Objects.equals(player2.name, "ai") || Objects.equals(player2.name, "AI")){
-                    aiChoice();
+                    turnComplete = aiChoice();
                 } else {
                     playChoice = pickOrShow();
                     turnComplete = choiceCheck(playChoice);
@@ -76,7 +76,7 @@ public class GamePlaying {
         }
     }
 
-    private void aiChoice(){
+    private boolean aiChoice(){
         ArrayList<Tile> playerList = null;
         String playerName = null;
         Player player;
@@ -98,6 +98,8 @@ public class GamePlaying {
         // TileManage.java 접근하고 싶으면? : tileListManage.[메서드이름] 으로 접근 가능
         // BoardManage.java 접근하고 싶다면? : boardManage.[메서드이름] 으로 접근 가능
         // -> 플레이어 기준으로 작성되어 있는 게 많으므로, 걸러서 작성해야 해야됨
+
+        return true;
     }
 
     private Boolean choiceCheck(String playChoice) {
