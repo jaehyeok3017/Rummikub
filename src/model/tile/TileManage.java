@@ -107,50 +107,26 @@ public class TileManage {
     }
 
     public void tileLinkPrint(LinkedList<Tile> tile){
-        for(int i = 0; i < tile.size(); i++){
-            TileColor color = tile.get(i).color;
+        for (Tile value : tile) {
+            TileColor color = value.color;
 
             if (color == TileColor.RED) {
-                if(tile.get(i).number == 999) System.out.print("[" + ColorCode.FONT_RED + "JOKER" + ColorCode.RESET + "]");
-                else System.out.print("[" + ColorCode.FONT_RED + tile.get(i).number + ColorCode.RESET + "]");
-            }
-            else if (color == TileColor.WHITE) {
-                if(tile.get(i).number == 999) System.out.print("[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "]");
-                else System.out.print("[" + ColorCode.FONT_WHITE + tile.get(i).number + ColorCode.RESET + "]");
-            }
-            else if (color == TileColor.BLUE) {
-                System.out.print("[" + ColorCode.FONT_BLUE + tile.get(i).number + ColorCode.RESET + "]");
-            }
-            else if (color == TileColor.YELLOW) {
-                System.out.print("[" + ColorCode.FONT_YELLOW + tile.get(i).number + ColorCode.RESET + "]");
+                if (value.number == 999) System.out.print("[" + ColorCode.FONT_RED + "JOKER" + ColorCode.RESET + "]");
+                else System.out.print("[" + ColorCode.FONT_RED + value.number + ColorCode.RESET + "]");
+            } else if (color == TileColor.WHITE) {
+                if (value.number == 999) System.out.print("[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "]");
+                else System.out.print("[" + ColorCode.FONT_WHITE + value.number + ColorCode.RESET + "]");
+            } else if (color == TileColor.BLUE) {
+                System.out.print("[" + ColorCode.FONT_BLUE + value.number + ColorCode.RESET + "]");
+            } else if (color == TileColor.YELLOW) {
+                System.out.print("[" + ColorCode.FONT_YELLOW + value.number + ColorCode.RESET + "]");
             }
         }
     }
 
     public void tileListPrint(ArrayList<Tile> list, String name) {
         System.out.println("\n-----------------\n" + name + " TileList");
-        if(Objects.equals(name, "AI") || Objects.equals(name, "ai")){
-            System.out.println("응애 나 인공지능");
-            tileSortToNumber(list);
 
-
-            for(int i = 0; i < list.size() - 2; i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
-                if(Objects.equals(list.get(i), list.get(i + 1)) && Objects.equals(list.get(i + 1), list.get(i + 2))){
-                    //타일 내기
-                }
-            }
-
-
-
-
-            /*
-            if(){ //낼 수 있는 타일이 없을 때
-                AIList.addLast(); //타일 가져가기
-            }
-            */
-
-
-        }
         for (int i = 0; i < list.size(); i++) {
             TileColor color = list.get(i).color;
 

@@ -3,6 +3,8 @@ package model.game;
 import model.board.BoardManage;
 import model.player.Player;
 import model.tile.Tile;
+import model.tile.TileColor;
+import model.tile.TileColor.*;
 import model.tile.TileManage;
 
 import java.util.*;
@@ -91,9 +93,20 @@ public class GamePlaying {
             player = player2;
         }
 
+
         // TODO AI가 할 행동 작성하기
         // 접근할 수 있는 방법들은 아래 choiceCheck Method를 참고해볼 것
         // 모르겠으면 질문
+
+        for(int i = 0; i < playerList.size(); i++){
+            if(i > playerList.size()){
+                tileListManage.push();
+            }
+
+            if(playerList.get(i) == playerList.get(i + 1) && playerList.get(i + 1) == playerList.get(i + 2)){
+                for(TileColor )
+            }
+        }
 
         // TileManage.java 접근하고 싶으면? : tileListManage.[메서드이름] 으로 접근 가능
         // BoardManage.java 접근하고 싶다면? : boardManage.[메서드이름] 으로 접근 가능
