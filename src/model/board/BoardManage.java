@@ -222,6 +222,10 @@ public class BoardManage {
                 && (onBoardTileList.get(index).get(detailIndex).color == player.tileList.get(result).color)) {
             return true;
         }
+        
+        else if(player.tileList.get(result).number == 999){
+            return true;
+        }
 
         else{
             System.out.println("해당 요소는 해당 위치에 들어갈 수 없습니다.");
