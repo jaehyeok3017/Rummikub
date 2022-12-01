@@ -11,6 +11,7 @@ import java.util.*;
 
 import static model.board.BoardManage.onBoardTileList;
 import static model.board.BoardManage.temporaryTile;
+import static model.game.GameInitAndEndSet.gameEnd;
 import static model.game.GameInitAndEndSet.gameEndCheck;
 import static model.game.PlayChoice.*;
 import static model.tile.TileManage.noPickTileList;
@@ -33,6 +34,13 @@ public class GamePlaying {
     public void gamePlay() {
         while (gameEndCheck(noPickTileList, player1.tileList, player2.tileList) == 0) {
             gamePlayToTurn();
+        }
+
+        int result = gameEndCheck(noPickTileList, player1.tileList, player2.tileList);
+        if(result != 0){
+            if(result == 1) gameEnd(1);
+            else if(result == 2) gameEnd(2);
+            else if(result == 3) gameEnd(3);
         }
     }
 
