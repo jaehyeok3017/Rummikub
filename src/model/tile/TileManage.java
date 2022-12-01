@@ -134,7 +134,7 @@ public class TileManage {
             tileSortToNumber(list);
 
 
-            for(int i = 0; i < list.size(); i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
+            for(int i = 0; i < list.size() - 2; i++){ //타일 색깔이 다르고 타일 숫자가 같을 때 타일 3개 내기 ex) 빨강1, 노랑1, 파랑1
                 if(Objects.equals(list.get(i), list.get(i + 1)) && Objects.equals(list.get(i + 1), list.get(i + 2))){
                     //타일 내기
                 }

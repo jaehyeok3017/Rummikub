@@ -35,17 +35,29 @@ public class GamePlaying {
 
     private void gamePlayToTurn() {
         boolean turnComplete = false;
-        String playChoice;
+        String playChoice = "1";
 
         do {
             tileListManage.tileLinkListPrint(onBoardTileList);
             if (playerTurn == 1) {
                 tileListManage.tileListPrint(player1.tileList, player1.name);
+
+                if(Objects.equals(player1.name, "ai") || Objects.equals(player1.name, "AI")){
+                    aiChoice();
+                } else {
+                    playChoice = pickOrShow();
+                    turnComplete = choiceCheck(playChoice);
+                }
             } else {
                 tileListManage.tileListPrint(player2.tileList, player2.name);
+
+                if(Objects.equals(player2.name, "ai") || Objects.equals(player2.name, "AI")){
+                    aiChoice();
+                } else {
+                    playChoice = pickOrShow();
+                    turnComplete = choiceCheck(playChoice);
+                }
             }
-            playChoice = pickOrShow();
-            turnComplete = choiceCheck(playChoice);
         } while (!turnComplete);
 
         if((Objects.equals(playChoice, "p")) || (Objects.equals(playChoice, "P"))){
@@ -62,6 +74,10 @@ public class GamePlaying {
                 playerTurn = 1;
             }
         }
+    }
+
+    private void aiChoice(){
+
     }
 
     private Boolean choiceCheck(String playChoice) {
