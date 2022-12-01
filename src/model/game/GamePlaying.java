@@ -177,7 +177,7 @@ public class GamePlaying {
                                 turnCheck = true;
                             }
                         }
-
+                        
                         if (first.number == playerList.get(j).number) {
                             if (first.color != playerList.get(j).color) {
                                 for (int k = 0; k < 1; k++) {
@@ -190,6 +190,9 @@ public class GamePlaying {
                             }
                         }
                     }
+//            }
+
+
                 }
             }
         }
@@ -204,6 +207,8 @@ public class GamePlaying {
                 System.out.println("] 카드가 추가되었습니다.");
             }
         }
+        tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
+
         return true;
     }
 
@@ -222,7 +227,6 @@ public class GamePlaying {
             player = player2;
         }
 
-        // TODO
         // 카드 가져오기 (p)
         if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
             if (tileListManage.isTileListNull(noPickTileList)) {
