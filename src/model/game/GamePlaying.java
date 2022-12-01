@@ -7,10 +7,10 @@ import model.tile.TileColor;
 import model.tile.TileColor.*;
 import model.tile.TileManage;
 
+import java.awt.desktop.AppReopenedEvent;
 import java.util.*;
 
-import static model.board.BoardManage.onBoardTileList;
-import static model.board.BoardManage.temporaryTile;
+import static model.board.BoardManage.*;
 import static model.game.GameInitAndEndSet.gameEndCheck;
 import static model.game.PlayChoice.*;
 import static model.tile.TileManage.noPickTileList;
@@ -81,7 +81,7 @@ public class GamePlaying {
         ArrayList<Tile> playerList = null;
         String playerName = null;
         Player player;
-        boolean turncheck = false;
+        boolean turnCheck = false;
 
         if (playerTurn == 1) {
             playerList = player1.tileList;
@@ -92,15 +92,25 @@ public class GamePlaying {
             playerName = player2.name;
             player = player2;
         }
-        tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
 
-//        if(!player.registerCheck){
+//        if(!player.registerCheck) {
 //            //TODO
+//            int registerSum = 0;
+//            for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
+//                for (Tile tile : tiles) {
+//                    registerSum = tile.number;
+//                }
+//            }
+//
+//            if (registerSum >= 30) {
+//                player.registerCheck = true;
+//                return true;
+//            }
 //        }
 //
 //        else{
             for (int i = 0; i < playerList.size() - 2; i++) {
-                // 숫자가 같고 색깔이 다를 때 타일 3개 내기 ex) 파랑11, 노랑11, 주황11
+                // 타일 색깔이 모두 같고, 숫자가 연속적일 경우
                 if (playerList.get(i).number == playerList.get(i + 1).number - 1 && playerList.get(i + 1).number - 1 == playerList.get(i + 2).number - 2) {
                     if (playerList.get(i).color == playerList.get(i + 1).color && playerList.get(i + 1).color == playerList.get(i + 2).color && playerList.get(i).color == playerList.get(i + 2).color) {
                         //타일 내기
@@ -111,11 +121,11 @@ public class GamePlaying {
 
                         onBoardTileList.add(temporaryTile);
                         temporaryTile = new LinkedList<Tile>();
-                        turncheck = true;
+                        turnCheck = true;
                     }
                 }
 
-                //색깔이 같고 타일 3개가 연속적인 숫자라면 내기
+                //숫자가 같고, 색깔이 다를 경우
                 if (playerList.get(i).number == playerList.get(i + 1).number && playerList.get(i + 1).number == playerList.get(i + 2).number) {
                     if (playerList.get(i).color != playerList.get(i + 1).color && playerList.get(i + 1).color != playerList.get(i + 2).color && playerList.get(i).color != playerList.get(i + 2).color) {
                         //타일 내기
@@ -126,13 +136,40 @@ public class GamePlaying {
 
                         onBoardTileList.add(temporaryTile);
                         temporaryTile = new LinkedList<Tile>();
-                        turncheck = true;
+                        turnCheck = true;
+                    }
+                }
+                //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 같고3개 이상의 연속적인 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
+                if(onBoardTileList.get(onBoardTileList.size() - 1).number == playerList.get(i).number + 1) {
+                    if (onBoardTileList.get(onBoardTileList.size() - 1).color == playerList.get(i).color) {
+                        for (int j = 0; j < 2; j++) {
+                            temporaryTile.addLast(playerList.get(i));
+                            playerList.remove(i);
+                        }
+
+                        onBoardTileList.add(temporaryTile);
+                        temporaryTile = new LinkedList<Tile>();
+                        turnCheck = true;
+                    }
+                }
+
+                //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 다르고 같은 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
+                if(onBoardTileList.get(onBoardTileList.size() - 1).number == playerList.get(i).number) {
+                    if (onBoardTileList.get(onBoardTileList.size() - 1).color != playerList.get(i).color) {
+                        for (int j = 0; j < 2; j++) {
+                            temporaryTile.addLast(playerList.get(i));
+                            playerList.remove(i);
+                        }
+
+                        onBoardTileList.add(temporaryTile);
+                        temporaryTile = new LinkedList<Tile>();
+                        turnCheck = true;
                     }
                 }
 //            }
         }
 
-        if (!turncheck) {
+        if (!turnCheck) {
             //타일 가져가기
             if (tileListManage.isTileListNull(noPickTileList)) {
             } else {
@@ -142,7 +179,7 @@ public class GamePlaying {
                 System.out.println("] 카드가 추가되었습니다.");
             }
         }
-
+        tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
         return true;
     }
 
