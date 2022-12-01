@@ -93,23 +93,10 @@ public class GamePlaying {
             player = player2;
         }
 
-//        if(!player.registerCheck) {
-//            //TODO
-//            int registerSum = 0;
-//            for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
-//                for (Tile tile : tiles) {
-//                    registerSum = tile.number;
-//                }
-//            }
-//
-//            if (registerSum >= 30) {
-//                player.registerCheck = true;
-//                return true;
-//            }
-//        }
-//
-//        else{
+        tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
+
         // 타일 색깔이 모두 같고, 숫자가 연속적일 경우
+        if(playerList.size() > 3){
         for (int i = 0; i < playerList.size() - 2; i++) {
             // 타일 색깔이 모두 같고, 숫자가 연속적일 경우
             if (playerList.get(i).number == playerList.get(i + 1).number - 1 && playerList.get(i + 1).number - 1 == playerList.get(i + 2).number - 2) {
@@ -126,7 +113,7 @@ public class GamePlaying {
                 }
 
                 //숫자가 같고, 색깔이 다를 경우
-                if (playerList.get(i).number == playerList.get(i + 1).number && playerList.get(i + 1).number == playerList.get(i + 2).number) {
+                if (playerList.get(i).number == playerList.get(i + 1).number && playerList.get(i + 1).number == playerList.get(i + 2).number && playerList.get(i).number == playerList.get(i + 2).number) {
                     if (playerList.get(i).color != playerList.get(i + 1).color && playerList.get(i + 1).color != playerList.get(i + 2).color && playerList.get(i).color != playerList.get(i + 2).color) {
                         //타일 내기
                         for (int j = 0; j < 3; j++) {
@@ -164,127 +151,117 @@ public class GamePlaying {
                                 playerList.remove(j);
                             }
 
-                            onBoardTileList.get(i).add(playerList.get(i));
+                            onBoardTileList.get(j).add(playerList.get(j));
                             temporaryTile = new LinkedList<Tile>();
                             turnCheck = true;
                         }
                     }
                 }
+            }
 
                 //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 다르고 같은 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
-                for (int j = 0; j < onBoardTileList.size(); j++) {
-                    Tile first = onBoardTileList.get(j).getFirst();
-                    Tile last = onBoardTileList.get(j).getLast();
+                if (playerList.size() > 3) {
+                    for (int j = 0; j < onBoardTileList.size(); j++) {
+                        Tile first = onBoardTileList.get(j).getFirst();
+                        Tile last = onBoardTileList.get(j).getLast();
 
-                    if (last.number == playerList.get(j).number) {
-                        if (last.color != playerList.get(j).color) {
-                            for (int k = 0; k < 1; k++) {
-                                temporaryTile.add(playerList.get(j));
-                                playerList.remove(j);
-                            }
-
-                            onBoardTileList.get(i).add(playerList.get(i));
-                            temporaryTile = new LinkedList<Tile>();
-                            turnCheck = true;
-                        }
-                    }
-
-                    //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 다르고 같은 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
-                    if (onBoardTileList.get(onBoardTileList.size() - 1).get(1).number == playerList.get(i).number) {
-                        if (onBoardTileList.get(onBoardTileList.size() - 1).get(1).color != playerList.get(i).color) {
-                            for (int l = 0; l < 2; j++) {
-                                temporaryTile.addLast(playerList.get(i));
-                                playerList.remove(i);
-                                if (first.number == playerList.get(l).number) {
-                                    if (first.color != playerList.get(l).color) {
-                                        for (int k = 0; k < 1; k++) {
-                                            temporaryTile.add(playerList.get(l));
-                                            playerList.remove(l);
-                                        }
-
-                                        onBoardTileList.get(i).add(playerList.get(i));
-                                        temporaryTile = new LinkedList<Tile>();
-                                        turnCheck = true;
-                                    }
+                        if (last.number == playerList.get(j).number) {
+                            if (last.color != playerList.get(j).color) {
+                                for (int k = 0; k < 1; k++) {
+                                    temporaryTile.add(playerList.get(j));
+                                    playerList.remove(j);
                                 }
+
+                                onBoardTileList.get(j).add(playerList.get(j));
+                                temporaryTile = new LinkedList<Tile>();
+                                turnCheck = true;
                             }
-//            }
                         }
 
+                        if (first.number == playerList.get(j).number) {
+                            if (first.color != playerList.get(j).color) {
+                                for (int k = 0; k < 1; k++) {
+                                    temporaryTile.add(playerList.get(j));
+                                    playerList.remove(j);
+                                }
+                                onBoardTileList.get(j).add(playerList.get(j));
+                                temporaryTile = new LinkedList<Tile>();
+                                turnCheck = true;
+                            }
+                        }
                     }
                 }
             }
         }
 
-                    if (!turnCheck) {
-                        //타일 가져가기
-                        if (tileListManage.isTileListNull(noPickTileList)) {
-                        } else {
-                            Tile tile = tileListManage.noPickTileDivide(playerList);
-                            System.out.print(playerName + "에게 [");
-                            tileListManage.tilePrint(tile);
-                            System.out.println("] 카드가 추가되었습니다.");
-                        }
-                    }
-                    tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
-                    return true;
-                }
+        if (!turnCheck) {
+            //타일 가져가기
+            if (tileListManage.isTileListNull(noPickTileList)) {
+            } else {
+                Tile tile = tileListManage.noPickTileDivide(playerList);
+                System.out.print(playerName + "에게 [");
+                tileListManage.tilePrint(tile);
+                System.out.println("] 카드가 추가되었습니다.");
+            }
+        }
+        return true;
+    }
 
-                private Boolean choiceCheck (String playChoice){
-                    ArrayList<Tile> playerList = null;
-                    String playerName = null;
-                    Player player;
+    private Boolean choiceCheck(String playChoice) {
+        ArrayList<Tile> playerList = null;
+        String playerName = null;
+        Player player;
 
-                    if (playerTurn == 1) {
-                        playerList = player1.tileList;
-                        playerName = player1.name;
-                        player = player1;
-                    } else {
-                        playerList = player2.tileList;
-                        playerName = player2.name;
-                        player = player2;
-                    }
+        if (playerTurn == 1) {
+            playerList = player1.tileList;
+            playerName = player1.name;
+            player = player1;
+        } else {
+            playerList = player2.tileList;
+            playerName = player2.name;
+            player = player2;
+        }
 
-                    // TODO
-                    // 카드 가져오기 (p)
-                    if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
-                        if (tileListManage.isTileListNull(noPickTileList)) {
-                        } else {
-                            Tile tile = tileListManage.noPickTileDivide(playerList);
-                            System.out.print(playerName + "에게 [");
-                            tileListManage.tilePrint(tile);
-                            System.out.println("] 카드가 추가되었습니다.");
-                        }
+        // TODO
+        // 카드 가져오기 (p)
+        if (Objects.equals(playChoice, "p") || Objects.equals(playChoice, "P")) {
+            if (tileListManage.isTileListNull(noPickTileList)) {
+            } else {
+                Tile tile = tileListManage.noPickTileDivide(playerList);
+                System.out.print(playerName + "에게 [");
+                tileListManage.tilePrint(tile);
+                System.out.println("] 카드가 추가되었습니다.");
+            }
 
-                        return true;
-                    }
+            return true;
+        }
 
-                    // 숫자 기준으로 정렬 (n)
-                    else if (Objects.equals(playChoice, "n") || Objects.equals(playChoice, "N")) {
-                        tileListManage.tileSortToNumber(playerList);
-                        return false;
-                    }
+        // 숫자 기준으로 정렬 (n)
+        else if (Objects.equals(playChoice, "n") || Objects.equals(playChoice, "N")) {
+            tileListManage.tileSortToNumber(playerList);
+            return false;
+        }
 
-                    // 카드 내기 (s)
-                    else if (Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")) {
-                        if (!player.registerCheck) {
-                            boardManage.generateTemporaryTileList(player);
-                        } else {
-                            String choiceAddOrEdit = addOrEdit();
-                            if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
-                                boardManage.generateTemporaryTileList(player);
-                            } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
-                                boardManage.editOnBoardTileList(player);
-                            }
-                        }
-
-                        return false;
-                    } else if (Objects.equals(playChoice, "e") || Objects.equals(playChoice, "E")) {
-                        return true;
-                    } else {
-                        System.out.println("잘못된 선택지입니다. 다시 입력하세요.");
-                        pickOrShow();
-                        return false;
-                    }
+        // 카드 내기 (s)
+        else if (Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")) {
+            if (!player.registerCheck) {
+                boardManage.generateTemporaryTileList(player);
+            } else {
+                String choiceAddOrEdit = addOrEdit();
+                if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
+                    boardManage.generateTemporaryTileList(player);
+                } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {
+                    boardManage.editOnBoardTileList(player);
                 }
             }
+
+            return false;
+        } else if (Objects.equals(playChoice, "e") || Objects.equals(playChoice, "E")) {
+            return true;
+        } else {
+            System.out.println("잘못된 선택지입니다. 다시 입력하세요.");
+            pickOrShow();
+            return false;
+        }
+    }
+}
