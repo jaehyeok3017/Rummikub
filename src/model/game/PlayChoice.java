@@ -2,7 +2,8 @@ package model.game;
 
 import java.util.Scanner;
 import model.player.Player;
-import model.tile.TileManage;
+
+import static model.board.BoardManage.onBoardTileList;
 
 public class PlayChoice {
     static Scanner scan = new Scanner(System.in);
@@ -20,6 +21,12 @@ public class PlayChoice {
     public static int generate() {
         System.out.print("\n카드를 새로 놓기 : 1 / 기존 배열에 놓기 : 2 / 카드 가져와서 재조합하기 : 3 \n" +
                 "배열 나누기 : 4 / 다시 선택하기 : 5 / 턴 종료하기 : -1 :: ");
+        return scan.nextInt();
+    }
+
+    public static int onBoardTileIndexPick(){
+        System.out.println();
+        System.out.print("몇 번 인덱스를 고르시겠습니까?, 완료하려면 -1을 입력하세요. (0~" + (onBoardTileList.size() - 1) + ") : ");
         return scan.nextInt();
     }
 

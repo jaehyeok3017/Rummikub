@@ -80,6 +80,8 @@ public class TileManage {
         System.out.println();
 
         for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).size() > 1) System.out.print(i + ":");
+
             for(int j = 0; j < list.get(i).size(); j++){
                 TileColor color = list.get(i).get(j).color;
 
@@ -100,7 +102,7 @@ public class TileManage {
             }
 
             if(list.get(i).size() > 1) System.out.print("   ");
-            if(list.get(i).size() > 1 && i % 5 == 0) System.out.println();
+            if(list.get(i).size() > 1 && i % 5 == 0 && i != 0) System.out.println();
         }
 
         System.out.println();
@@ -144,6 +146,8 @@ public class TileManage {
             else if (color == TileColor.YELLOW) {
                 System.out.print(i + ":[" + ColorCode.FONT_YELLOW + list.get(i).number + ColorCode.RESET + "], ");
             }
+
+            if(i % 15 == 0 && i != 0) System.out.println();
         }
     }
 

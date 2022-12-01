@@ -13,7 +13,7 @@ public class BoardManage {
     public static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
     public static ArrayList<LinkedList<Tile>> turnCheckCompleteTileList = new ArrayList<>(106);
 
-    static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
+    public static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
     private final TileManage tileManage;
     private int registerSum = 0;
 
@@ -157,7 +157,7 @@ public class BoardManage {
     }
 
     public void editOnBoardTileList(Player player) {
-
+        
     }
 
     public void moveOnBoardTile(Player player, int elementIndex) {
