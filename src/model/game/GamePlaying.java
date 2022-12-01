@@ -92,21 +92,38 @@ public class GamePlaying {
             playerName = player2.name;
             player = player2;
         }
+        int size = playerList.size();
 
 
         // TODO AI가 할 행동 작성하기
         // 접근할 수 있는 방법들은 아래 choiceCheck Method를 참고해볼 것
         // 모르겠으면 질문
 
-        for(int i = 0; i < playerList.size(); i++){
-            if(i > playerList.size()){
-                tileListManage.push();
-            }
+        //숫자가 같고 색깔이 다를 때 타일 3개 내기 ex) 파랑11, 노랑11, 주황11
+        do {
+            for (int i = 0; i < size; i++) {
+                //숫자가 같은지 확인
+                if (playerList.get(i).number == playerList.get(i + 1).number - 1 && playerList.get(i + 1).number - 1 == playerList.get(i + 2).number - 2) {
+                    if(playerList.get(i).color != playerList.get(i + 1).color && playerList.get(i + 1).color != playerList.get(i + 2).color && playerList.get(i).color != playerList.get(i + 2).color){
+                        //타일 내기
 
-            if(playerList.get(i) == playerList.get(i + 1) && playerList.get(i + 1) == playerList.get(i + 2)){
-                for(TileColor )
+                    }
+
+                }
+
+                //색깔이 같고 타일 3개가 연속적인 숫자라면 내기
+                else if(playerList.get(i).number + 1 == playerList.get(i + 1).number && playerList.get(i + 1).number + 1 == playerList.get(i + 2).number){
+                    if(playerList.get(i).color == playerList.get(i + 1).color && playerList.get(i + 1).color == playerList.get(i + 2).color && playerList.get(i).color == playerList.get(i + 2).color){
+                        //타일 내기
+                    }
+                }
+
+                else{
+                    //타일 가져가기
+                }
             }
-        }
+            tileListManage.tileSortToNumber(playerList); //돌 때마다 정렬 해줌
+        }while (size > 3);
 
         // TileManage.java 접근하고 싶으면? : tileListManage.[메서드이름] 으로 접근 가능
         // BoardManage.java 접근하고 싶다면? : boardManage.[메서드이름] 으로 접근 가능

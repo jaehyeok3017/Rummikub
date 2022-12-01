@@ -25,15 +25,15 @@ public class BoardManage {
         boolean result = turnCheck(player);
 
         if (result) {
-            turnIsSuccessed();
+            turnIsSucceed();
         } else {
             turnIsFailed(player);
         }
     }
 
     public boolean turnCheck(Player player) {
-        for (int i = 0; i < onBoardTileList.size(); i++) {
-            if (onBoardTileList.get(i).size() < 3 && player.registerCheck) {
+        for (LinkedList<Tile> tileLinkedList : onBoardTileList) {
+            if (tileLinkedList.size() < 3 && player.registerCheck) {
                 return false;
             }
         }
@@ -77,7 +77,7 @@ public class BoardManage {
         registerSum = 0;
     }
 
-    public void turnIsSuccessed() {
+    public void turnIsSucceed() {
         // 턴 체크하는 타일리스트 초기화 & 등록 체크하는 변수 초기화
         turnCheckCompleteTileList = new ArrayList<>(106);
         registerSum = 0;
