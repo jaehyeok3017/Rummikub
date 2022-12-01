@@ -6,6 +6,7 @@ import model.tile.TileManage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static model.game.PlayChoice.*;
 
@@ -53,7 +54,8 @@ public class BoardManage {
                 System.out.println("카드의 총 합이 30을 넘어, 등록이 완료되었습니다!");
                 return true;
             } else {
-                System.out.println("기존에 등록이 진행되지 않았고, 낸 카드의 합이 30 미만입니다.");
+                if(!Objects.equals(player.name, "ai") && !Objects.equals(player.name, "AI"))
+                    System.out.println("기존에 등록이 진행되지 않았고, 낸 카드의 합이 30 미만입니다.");
                 return false;
             }
         }
@@ -203,11 +205,7 @@ public class BoardManage {
                         player.tileList.remove(result);
                     }
                 }
-            } else if (edit == 2) {
-                boolean moveCheck = false;
-                moveCheck = moveCheck(index, detailIndex, player);
-                if (moveCheck) moveOnBoardTile(player, index, detailIndex);
-            } else if (edit == 3) {
+            }  else if (edit == 2) {
                 boolean splitCheck = false;
                 splitCheck = splitCheck(index, detailIndex, player);
                 if (splitCheck) splitOnBoardTileList(player, index, detailIndex);
@@ -233,15 +231,6 @@ public class BoardManage {
             System.out.println("해당 요소는 해당 위치에 들어갈 수 없습니다.");
             return false;
         }
-    }
-
-    private boolean moveCheck(int index, int detailIndex, Player player) {
-        // 온보딩의 사이즈와 이동할 아이가 제대로 되어있는지 확인
-        return true;
-    }
-
-    public void moveOnBoardTile(Player player, int index, int detailIndex) {
-
     }
 
     private boolean splitCheck(int index, int detailIndex, Player player) {

@@ -50,17 +50,17 @@ public class GameInitAndEndSet {
     public static void gameEnd(int gameEndStatus) {
         // 플레이어1 승리
         if(gameEndStatus == 1){
-
+            System.out.println("플레이어 1이 이겼습니다. 게임이 종료되었습니다.");
         }
 
         // 플레이어2 승리
         else if(gameEndStatus == 2){
-
+            System.out.println("플레이어 2가 이겼습니다. 게임이 종료되었습니다.");
         }
 
         // 카드가 전체 빠져서 무승부
         else if (gameEndStatus == 3){
-
+            System.out.println("카드 전체가 빠져서 무승부 처리되었습니다.");
         }
     }
 }

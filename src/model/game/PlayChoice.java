@@ -19,7 +19,7 @@ public class PlayChoice {
     }
 
     public static int editCheck() {
-        System.out.print("\n기존 배열을 수정하기 : 1 / 배열 나누기 : 2 / 배열 요소 가져오기 : 3 / 완료 : -1 :: ");
+        System.out.print("\n기존 배열을 수정하기 : 1 / 배열 나누기 : 2 / 완료 : -1 :: ");
         return scan.nextInt();
     }
 
