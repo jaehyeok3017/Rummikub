@@ -77,7 +77,27 @@ public class GamePlaying {
     }
 
     private void aiChoice(){
+        ArrayList<Tile> playerList = null;
+        String playerName = null;
+        Player player;
 
+        if (playerTurn == 1) {
+            playerList = player1.tileList;
+            playerName = player1.name;
+            player = player1;
+        } else {
+            playerList = player2.tileList;
+            playerName = player2.name;
+            player = player2;
+        }
+
+        // TODO AI가 할 행동 작성하기
+        // 접근할 수 있는 방법들은 아래 choiceCheck Method를 참고해볼 것
+        // 모르겠으면 질문
+
+        // TileManage.java 접근하고 싶으면? : tileListManage.[메서드이름] 으로 접근 가능
+        // BoardManage.java 접근하고 싶다면? : boardManage.[메서드이름] 으로 접근 가능
+        // -> 플레이어 기준으로 작성되어 있는 게 많으므로, 걸러서 작성해야 해야됨
     }
 
     private Boolean choiceCheck(String playChoice) {
