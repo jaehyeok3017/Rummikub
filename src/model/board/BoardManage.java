@@ -187,15 +187,45 @@ public class BoardManage {
 
             else{
                 if(work == 1){
-                    onBoardTileList.get(index).add(detailIndex, player.tileList.get(result));
-                    player.tileList.remove(result);
+                    boolean workCheck = false;
+                    workCheck = workChecking(index, detailIndex, result, player);
+
+                    if(workCheck) {
+                        onBoardTileList.get(index).add(detailIndex, player.tileList.get(result));
+                        player.tileList.remove(result);
+                    }
                 }
 
                 else if(work == 2){
-                    onBoardTileList.get(index).add(detailIndex + 1, player.tileList.get(result));
-                    player.tileList.remove(result);
+                    boolean workCheck = false;
+                    workCheck = workChecking(index, detailIndex, result, player);
+
+                    if(workCheck) {
+                        onBoardTileList.get(index).add(detailIndex + 1, player.tileList.get(result));
+                        player.tileList.remove(result);
+                    }
                 }
             }
+        }
+    }
+
+    private boolean workChecking(int index, int detailIndex, int result, Player player){
+        // 숫자가 같은 경우, 색깔이 달라야 함
+        if((onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number) &&
+                (onBoardTileList.get(index).get(detailIndex).color != player.tileList.get(result).color)) {
+            return true;
+        }
+
+        // 색깔이 같은 경우, 숫자가 달라야 함
+        else if(((onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number + 1)
+                || (onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number - 1))
+                && (onBoardTileList.get(index).get(detailIndex).color == player.tileList.get(result).color)) {
+            return true;
+        }
+
+        else{
+            System.out.println("해당 요소는 해당 위치에 들어갈 수 없습니다.");
+            return false;
         }
     }
 

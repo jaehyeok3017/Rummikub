@@ -139,9 +139,11 @@ public class GamePlaying {
                         turnCheck = true;
                     }
                 }
+
+                int onboardSize = onBoardTileList.size() - 1;
                 //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 같고3개 이상의 연속적인 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
-                if(onBoardTileList.get(onBoardTileList.size() - 1).number == playerList.get(i).number + 1) {
-                    if (onBoardTileList.get(onBoardTileList.size() - 1).color == playerList.get(i).color) {
+                if(onBoardTileList.get(onboardSize).get(-1).number == playerList.get(i).number + 1) {
+                    if (onBoardTileList.get(onBoardTileList.size() - 1).get(-1).color == playerList.get(i).color) {
                         for (int j = 0; j < 2; j++) {
                             temporaryTile.addLast(playerList.get(i));
                             playerList.remove(i);
@@ -154,8 +156,8 @@ public class GamePlaying {
                 }
 
                 //이미 올라가 있는 타일들에 타일 하나씩 추가하기 / 색깔이 다르고 같은 값으로 이루어져있는 타일들 뒤에 타일 하나 붙이기
-                if(onBoardTileList.get(onBoardTileList.size() - 1).number == playerList.get(i).number) {
-                    if (onBoardTileList.get(onBoardTileList.size() - 1).color != playerList.get(i).color) {
+                if(onBoardTileList.get(onBoardTileList.size() - 1).get(1).number == playerList.get(i).number) {
+                    if (onBoardTileList.get(onBoardTileList.size() - 1).get(1).color != playerList.get(i).color) {
                         for (int j = 0; j < 2; j++) {
                             temporaryTile.addLast(playerList.get(i));
                             playerList.remove(i);
