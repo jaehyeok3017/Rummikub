@@ -11,17 +11,19 @@ import static model.game.PlayChoice.tileIndexPick;
 
 public class BoardManage {
     public static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
-    static ArrayList<LinkedList<Tile>> preOnBoardTileList = new ArrayList<>(106);
+    public static ArrayList<LinkedList<Tile>> turnCheckCompleteTileList = new ArrayList<>(106);
 
     static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
     private final TileManage tileManage;
+    private int registerSum = 0;
 
     public BoardManage(TileManage tileManage) {
         this.tileManage = tileManage;
     }
 
     public void turnChanged(Player player) {
-        Boolean result = turnCheck(player);
+        boolean result = turnCheck(player);
+
         if (result) {
             turnIsSuccessed();
         } else {
@@ -36,22 +38,49 @@ public class BoardManage {
             }
         }
 
+        // 등록이 되지 않은 경우에 모든 숫자를 가져와서 더해줌
+        if(!player.registerCheck){
+            for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
+                for (Tile tile : tiles) {
+                    registerSum += tile.number;
+                }
+            }
+
+            if(registerSum >= 30){
+                player.registerCheck = true;
+                System.out.println("카드의 총 합이 30을 넘어, 등록이 완료되었습니다!");
+                return true;
+            }
+
+            else{
+                System.out.println("기존에 등록이 진행되지 않았고, 낸 카드의 합이 30 미만입니다.");
+                return false;
+            }
+        }
+
         return true;
     }
 
     public void turnIsFailed(Player player) {
         System.out.println("조건이 충족되지 않았으므로, 기존 배열로 돌아갑니다.");
-        onBoardTileList = new ArrayList<>(106);
-        onBoardTileList.addAll(preOnBoardTileList);
-        player.tileList.addAll(temporaryTile);
-        temporaryTile = new LinkedList<Tile>();
+
+        // 기존 배열을 제거
+        onBoardTileList.removeAll(turnCheckCompleteTileList);
+
+        // 플레이어에게 타일을 다시 추가
+        for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
+            player.tileList.addAll(tiles);
+        }
+
+        // 턴 체크하는 타일리스트 초기화 & 등록 체크하는 변수 초기화
+        turnCheckCompleteTileList = new ArrayList<>(106);
+        registerSum = 0;
     }
 
     public void turnIsSuccessed() {
-        onBoardTileList.add(temporaryTile);
-        preOnBoardTileList = new ArrayList<>(106);
-        preOnBoardTileList.addAll(onBoardTileList);
-        temporaryTile = new LinkedList<Tile>();
+        // 턴 체크하는 타일리스트 초기화 & 등록 체크하는 변수 초기화
+        turnCheckCompleteTileList = new ArrayList<>(106);
+        registerSum = 0;
     }
 
     public void generateTemporaryTileList(Player player) {
@@ -73,16 +102,22 @@ public class BoardManage {
             }
         }
 
-        boolean check = generateTempCheck();
-        if(check) turnIsSuccessed();
-        else turnIsFailed(player);
+        boolean isTemporaryComplete = generateTempCheck(player);
+        if(isTemporaryComplete){
+            turnCheckCompleteTileList.add(temporaryTile);
+            onBoardTileList.add(temporaryTile);
+        }
+        else{
+            player.tileList.addAll(temporaryTile);
+        }
+        temporaryTile = new LinkedList<Tile>();
     }
 
-    public Boolean generateTempCheck() {
+    public Boolean generateTempCheck(Player player) {
         int size = temporaryTile.size();
 
         if (size < 3) {
-            System.out.println("임시 배열의 카드가 3개 미만입니다.");
+            System.out.println("임시 배열의 카드가 3개 미만입니다. 등록에 실패하였습니다.");
             return false;
         }
 
@@ -101,7 +136,7 @@ public class BoardManage {
                 numberStack += 1;
             }
 
-            if (temporaryTile.get(i).number == 999) {
+            if (temporaryTile.get(i).number == 999 || temporaryTile.get(i+1).number == 999) {
                 colorStack += 1;
                 numberStack += 1;
             }
@@ -115,7 +150,10 @@ public class BoardManage {
             return true;
         }
 
-        else return false;
+        else {
+            System.out.println("색깔이나 숫자가 연속되지 않았습니다. 등록에 실패하였습니다.");
+            return false;
+        }
     }
 
     public void editOnBoardTileList(Player player) {

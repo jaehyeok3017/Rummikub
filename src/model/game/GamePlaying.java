@@ -48,12 +48,19 @@ public class GamePlaying {
             turnComplete = choiceCheck(playChoice);
         } while (!turnComplete);
 
-        if (playerTurn == 1) {
-            boardManage.turnChanged(player1);
-            playerTurn = 2;
-        } else {
-            boardManage.turnChanged(player2);
-            playerTurn = 1;
+        if((Objects.equals(playChoice, "p")) || (Objects.equals(playChoice, "P"))){
+            if(playerTurn == 1) playerTurn = 2;
+            else playerTurn = 1;
+        }
+
+        else{
+            if (playerTurn == 1) {
+                boardManage.turnChanged(player1);
+                playerTurn = 2;
+            } else {
+                boardManage.turnChanged(player2);
+                playerTurn = 1;
+            }
         }
     }
 

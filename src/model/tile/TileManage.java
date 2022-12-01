@@ -61,9 +61,11 @@ public class TileManage {
         TileColor color = tile.color;
 
         if (color == TileColor.RED) {
-            System.out.print(ColorCode.FONT_RED + tile.number + ColorCode.RESET);
+            if(tile.number == 999) System.out.print(ColorCode.FONT_RED + "JOKER" + ColorCode.RESET);
+            else System.out.print(ColorCode.FONT_RED + tile.number + ColorCode.RESET);
         }
         else if (color == TileColor.WHITE) {
+            if(tile.number == 999) System.out.print("[" + ColorCode.FONT_WHITE + "JOKER" + ColorCode.RESET + "]");
             System.out.print(ColorCode.FONT_WHITE + tile.number + ColorCode.RESET);
         }
         else if (color == TileColor.BLUE) {

@@ -17,11 +17,6 @@ public class PlayChoice {
         return scan.next();
     }
 
-    public static int generateNoRegister() {
-        System.out.print("\n카드를 새로 놓기 : 1 / 임시 배열에 다시 놓기 : 2 / 메뉴로 돌아가기 : 3 :: ");
-        return scan.nextInt();
-    }
-
     public static int generate() {
         System.out.print("\n카드를 새로 놓기 : 1 / 기존 배열에 놓기 : 2 / 카드 가져와서 재조합하기 : 3 \n" +
                 "배열 나누기 : 4 / 다시 선택하기 : 5 / 턴 종료하기 : -1 :: ");
