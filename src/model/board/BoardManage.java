@@ -66,28 +66,22 @@ public class BoardManage {
     public void turnIsFailed(Player player) {
         System.out.println("조건이 충족되지 않았으므로, 기존 배열로 돌아갑니다.");
 
-        // 기존 배열을 제거
+        // 보드를 다시 되돌리기 (조건 충족X)
         onBoardTileList.removeAll(turnCheckCompleteTileList);
-
-        // 온보드에 다시 타일을 돌려놓기
         onBoardTileList.addAll(previousTileList);
 
-        // 플레이어에게 타일을 다시 추가
         for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
             player.tileList.addAll(tiles);
         }
 
-        // 턴 체크하는 타일리스트 초기화 & 등록 체크하는 변수 초기화
         turnCheckCompleteTileList = new ArrayList<>(106);
         registerSum = 0;
     }
 
     public void turnIsSucceed() {
-        // 턴 체크하는 타일리스트 초기화 & 등록 체크하는 변수 초기화
         turnCheckCompleteTileList = new ArrayList<>(106);
         registerSum = 0;
 
-        // onBoard 내용을 가져옴
         previousTileList = new ArrayList<>(106);
         previousTileList.addAll(onBoardTileList);
     }
