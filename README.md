@@ -15,4 +15,4 @@
 - [AI Part Develop - 홍석준](https://github.com/lastro1206) : 타일 색깔 부분 및 AI 로직 구현
 
 ### 📚 04. 추가 유지보수
-- [Refactor - 최재혁](https://github.com/jaehyeok3017) : 3학년 전공 프로젝트 중 <CleanCode>를 읽고 코드 중 일부 
+- [Refactor - 최재혁](https://github.com/jaehyeok3017) : 3학년 전공 프로젝트 중 CleanCode를 읽고 코드 중 일부 유지보수 
