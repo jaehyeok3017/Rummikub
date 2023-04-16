@@ -13,3 +13,6 @@
 ### 🙇‍♂️ 03. 제작 한 사람들
 - [Rummikub Game Develop - 최재혁](https://github.com/jaehyeok3017) : 보드, 유저, 타일뽑기 등 전반적 게임 구현, AI 보조
 - [AI Part Develop - 홍석준](https://github.com/lastro1206) : 타일 색깔 부분 및 AI 로직 구현
+
+### 📚 04. 추가 유지보수
+- [Refactor - 최재혁](https://github.com/jaehyeok3017) : 3학년 전공 프로젝트 중 <CleanCode>를 읽고 코드 중 일부 
