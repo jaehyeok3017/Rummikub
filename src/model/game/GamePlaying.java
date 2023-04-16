@@ -4,7 +4,6 @@ import model.board.BoardManage;
 import model.player.Player;
 import model.tile.Tile;
 import model.tile.TileManage;
-
 import java.util.*;
 
 import static model.board.BoardManage.onBoardTileList;
@@ -75,52 +74,32 @@ public record GamePlaying(BoardManage boardManage, TileManage tileListManage,
     private boolean aiChoice() {
         ArrayList<Tile> playerList = null;
         String playerName = null;
-        Player player;
-        boolean turncheck = false;
+        boolean isTurnComplete = false;
 
         if (playerTurn == 1) {
             playerList = player1.tileList;
             playerName = player1.name;
-            player = player1;
         } else {
             playerList = player2.tileList;
             playerName = player2.name;
-            player = player2;
         }
         tileListManage.tileSortToNumber(playerList);
 
         for (int i = 0; i < playerList.size() - 3; i++) {
             // 숫자가 같고 색깔이 다를 때 타일 3개 내기 ex) 파랑11, 노랑11, 주황11
-            if (playerList.get(i).number == playerList.get(i + 1).number - 1 && playerList.get(i + 1).number - 1 == playerList.get(i + 2).number - 2) {
-                if (playerList.get(i).color == playerList.get(i + 1).color && playerList.get(i + 1).color == playerList.get(i + 2).color && playerList.get(i).color == playerList.get(i + 2).color) {
-                    //타일 내기
-                    for (int j = 0; j < 3; j++) {
-                        temporaryTile.add(playerList.get(i));
-                        playerList.remove(i);
-                    }
-
-                    onBoardTileList.add(temporaryTile);
-                    temporaryTile = new LinkedList<Tile>();
-                    turncheck = true;
-                }
+            if (isSameNumber(playerList, i)) {
+                cardInsert(playerList, i);
+                isTurnComplete = true;
             }
 
             //색깔이 같고 타일 3개가 연속적인 숫자라면 내기
-            if (playerList.get(i).number == playerList.get(i + 1).number && playerList.get(i + 1).number == playerList.get(i + 2).number) {
-                if (playerList.get(i).color != playerList.get(i + 1).color && playerList.get(i + 1).color != playerList.get(i + 2).color && playerList.get(i).color != playerList.get(i + 2).color) {
-                    for (int j = 0; j < 3; j++) {
-                        temporaryTile.add(playerList.get(i));
-                        playerList.remove(i);
-                    }
-
-                    onBoardTileList.add(temporaryTile);
-                    temporaryTile = new LinkedList<Tile>();
-                    turncheck = true;
-                }
+            if (isConstantNumber(playerList, i)) {
+                cardInsert(playerList, i);
+                isTurnComplete = true;
             }
         }
 
-        if (!turncheck) {
+        if (!isTurnComplete) {
             if (tileListManage.isTileListNull(noPickTileList)) {
             } else {
                 Tile tile = tileListManage.noPickTileDivide(playerList);
@@ -131,6 +110,34 @@ public record GamePlaying(BoardManage boardManage, TileManage tileListManage,
         }
 
         return true;
+    }
+
+    private Boolean isConstantNumber(ArrayList<Tile> playerList, int i){
+        return (playerList.get(i).number == playerList.get(i + 1).number &&
+                    playerList.get(i + 1).number == playerList.get(i + 2).number) &&
+
+                (playerList.get(i).color != playerList.get(i + 1).color &&
+                        playerList.get(i + 1).color != playerList.get(i + 2).color
+                        && playerList.get(i).color != playerList.get(i + 2).color);
+    }
+
+    private Boolean isSameNumber(ArrayList<Tile> playerList, int i){
+        return (playerList.get(i).number == playerList.get(i + 1).number - 1 &&
+                playerList.get(i + 1).number - 1 == playerList.get(i + 2).number - 2) &&
+
+                (playerList.get(i).color == playerList.get(i + 1).color &&
+                playerList.get(i + 1).color == playerList.get(i + 2).color &&
+                playerList.get(i).color == playerList.get(i + 2).color);
+    }
+
+    private void cardInsert(ArrayList<Tile> playerList, int i){
+        for (int j = 0; j < 3; j++) {
+            temporaryTile.add(playerList.get(i));
+            playerList.remove(i);
+        }
+
+        onBoardTileList.add(temporaryTile);
+        temporaryTile = new LinkedList<Tile>();
     }
 
     private Boolean choiceCheck(String playChoice) {
@@ -169,10 +176,10 @@ public record GamePlaying(BoardManage boardManage, TileManage tileListManage,
 
         // 카드 내기 (s)
         else if (Objects.equals(playChoice, "s") || Objects.equals(playChoice, "S")) {
-            if (!player.registerCheck) {
+            if (!player.isRegisterCheck) {
                 boardManage.generateTemporaryTileList(player);
             } else {
-                String choiceAddOrEdit = addOrEdit();
+                String choiceAddOrEdit = cardListAddOrEdit();
                 if (Objects.equals(choiceAddOrEdit, "a") || Objects.equals(choiceAddOrEdit, "A")) {
                     boardManage.generateTemporaryTileList(player);
                 } else if (Objects.equals(choiceAddOrEdit, "e") || Objects.equals(choiceAddOrEdit, "E")) {

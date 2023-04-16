@@ -19,7 +19,8 @@ public class GameInitAndEndSet {
         }
     }
 
-    public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {
+    public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList,
+                                   ArrayList<Tile> playerTwoTileList) {
         int tileListSize = TileManage.getStackSize(tileList);
         int playerOneListSize = TileManage.getStackSize(playerOneTileList);
         int playerTwoListSize = TileManage.getStackSize(playerTwoTileList);

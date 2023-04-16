@@ -13,7 +13,7 @@ public class PlayChoice {
         return scan.next();
     }
 
-    public static String addOrEdit() {
+    public static String cardListAddOrEdit() {
         System.out.print("\n새로운 카드리스트 생성 : A or a / 기존 리스트에 추가 : E or e :: ");
         return scan.next();
     }

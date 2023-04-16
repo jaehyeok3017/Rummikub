@@ -36,13 +36,13 @@ public class BoardManage {
 
     public boolean turnCheck(Player player) {
         for (LinkedList<Tile> tileLinkedList : onBoardTileList) {
-            if (tileLinkedList.size() < 3 && player.registerCheck) {
+            if (tileLinkedList.size() < 3 && player.isRegisterCheck) {
                 return false;
             }
         }
 
         // 등록이 되지 않은 경우에 모든 숫자를 가져와서 더해줌
-        if (!player.registerCheck) {
+        if (!player.isRegisterCheck) {
             for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
                 for (Tile tile : tiles) {
                     registerSum += tile.number;
@@ -50,7 +50,7 @@ public class BoardManage {
             }
 
             if (registerSum >= 30) {
-                player.registerCheck = true;
+                player.isRegisterCheck = true;
                 System.out.println("카드의 총 합이 30을 넘어, 등록이 완료되었습니다!");
                 return true;
             } else {
