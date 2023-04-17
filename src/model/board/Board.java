@@ -2,7 +2,7 @@ package model.board;
 
 import model.player.Player;
 import model.tile.Tile;
-import model.tile.TileManage;
+import model.tile.TileList;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -10,17 +10,17 @@ import java.util.Objects;
 
 import static model.game.PlayChoice.*;
 
-public class BoardManage {
+public class Board {
     public static ArrayList<LinkedList<Tile>> onBoardTileList = new ArrayList<>(106);
     public static ArrayList<LinkedList<Tile>> turnCheckCompleteTileList = new ArrayList<>(106);
     public static ArrayList<LinkedList<Tile>> previousTileList = new ArrayList<>(106);
     public static ArrayList<LinkedList<Tile>> playerPutTileList = new ArrayList<>(106);
 
     public static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
-    private final TileManage tileManage;
+    private final TileList tileManage;
     private int onBoardTileSum = 0;
 
-    public BoardManage(TileManage tileManage) {
+    public Board(TileList tileManage) {
         this.tileManage = tileManage;
     }
 

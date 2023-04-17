@@ -3,7 +3,7 @@ package model.game;
 import java.util.Scanner;
 import model.player.Player;
 
-import static model.board.BoardManage.onBoardTileList;
+import static model.board.Board.onBoardTileList;
 
 public class PlayChoice {
     static Scanner scan = new Scanner(System.in);

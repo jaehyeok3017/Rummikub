@@ -1,14 +1,14 @@
 package model.game;
 
 import model.tile.Tile;
-import model.tile.TileManage;
+import model.tile.TileList;
 
 import java.util.*;
 
-import static model.tile.TileManage.noPickTileList;
+import static model.tile.TileList.noPickTileList;
 
 public class GameInitAndEndSet {
-    public static void gameInitSetting(TileManage tileManage,
+    public static void gameInitSetting(TileList tileManage,
                                        ArrayList<Tile> playerOneTileList, ArrayList<Tile> playerTwoTileList) {
         tileManage.push();
         tileManage.tileShuffle(noPickTileList);
@@ -21,9 +21,9 @@ public class GameInitAndEndSet {
 
     public static int gameEndCheck(ArrayList<Tile> tileList, ArrayList<Tile> playerOneTileList,
                                    ArrayList<Tile> playerTwoTileList) {
-        int tileListSize = TileManage.getStackSize(tileList);
-        int playerOneListSize = TileManage.getStackSize(playerOneTileList);
-        int playerTwoListSize = TileManage.getStackSize(playerTwoTileList);
+        int tileListSize = TileList.getStackSize(tileList);
+        int playerOneListSize = TileList.getStackSize(playerOneTileList);
+        int playerTwoListSize = TileList.getStackSize(playerTwoTileList);
 
         if (playerOneListSize == 0) {
             return 1;

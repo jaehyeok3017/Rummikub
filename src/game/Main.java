@@ -1,9 +1,9 @@
 package game;
 
-import model.board.BoardManage;
+import model.board.Board;
 import model.game.GamePlaying;
 import model.player.Player;
-import model.tile.TileManage;
+import model.tile.TileList;
 
 import java.util.Scanner;
 
@@ -22,8 +22,8 @@ public class Main {
         String playerTwoNameInput = scan.next();
         Player playerTwo = new Player(playerTwoNameInput);
 
-        TileManage tileManage = new TileManage();
-        BoardManage boardManage = new BoardManage(tileManage);
+        TileList tileManage = new TileList();
+        Board boardManage = new Board(tileManage);
         gameInitSetting(tileManage, playerOne.tileList, playerTwo.tileList);
 
         // 02. 게임 시작 (여기 안에서 자체 루프 돌림) + 알아서 종료조건 찾아줌

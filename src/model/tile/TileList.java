@@ -4,7 +4,7 @@ import java.util.*;
 
 import static model.game.GameInitAndEndSet.gameEnd;
 
-public class TileManage {
+public class TileList {
     public static ArrayList<Tile> noPickTileList = new ArrayList<Tile>(106);
 
     public void push() {

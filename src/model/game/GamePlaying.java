@@ -1,19 +1,19 @@
 package model.game;
 
-import model.board.BoardManage;
+import model.board.Board;
 import model.player.Player;
 import model.tile.Tile;
-import model.tile.TileManage;
+import model.tile.TileList;
 import java.util.*;
 
-import static model.board.BoardManage.onBoardTileList;
-import static model.board.BoardManage.temporaryTile;
+import static model.board.Board.onBoardTileList;
+import static model.board.Board.temporaryTile;
 import static model.game.GameInitAndEndSet.gameEnd;
 import static model.game.GameInitAndEndSet.gameEndCheck;
 import static model.game.PlayChoice.*;
-import static model.tile.TileManage.noPickTileList;
+import static model.tile.TileList.noPickTileList;
 
-public record GamePlaying(BoardManage boardManage, TileManage tileListManage,
+public record GamePlaying(Board boardManage, TileList tileListManage,
                           Player player1, Player player2) {
     private static int playerTurn = 1;
 
