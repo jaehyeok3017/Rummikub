@@ -18,16 +18,16 @@ public class BoardManage {
 
     public static LinkedList<Tile> temporaryTile = new LinkedList<Tile>();
     private final TileManage tileManage;
-    private int registerSum = 0;
+    private int onBoardTileSum = 0;
 
     public BoardManage(TileManage tileManage) {
         this.tileManage = tileManage;
     }
 
     public void turnChanged(Player player) {
-        boolean result = turnCheck(player);
+        boolean isPlayerTurnSucceed = turnCheck(player);
 
-        if (result) {
+        if (isPlayerTurnSucceed) {
             turnIsSucceed();
         } else {
             turnIsFailed(player);
@@ -45,11 +45,11 @@ public class BoardManage {
         if (!player.isRegisterCheck) {
             for (LinkedList<Tile> tiles : turnCheckCompleteTileList) {
                 for (Tile tile : tiles) {
-                    registerSum += tile.number;
+                    onBoardTileSum += tile.number;
                 }
             }
 
-            if (registerSum >= 30) {
+            if (onBoardTileSum >= 30) {
                 player.isRegisterCheck = true;
                 System.out.println("카드의 총 합이 30을 넘어, 등록이 완료되었습니다!");
                 return true;
@@ -75,12 +75,12 @@ public class BoardManage {
         }
 
         turnCheckCompleteTileList = new ArrayList<>(106);
-        registerSum = 0;
+        onBoardTileSum = 0;
     }
 
     public void turnIsSucceed() {
         turnCheckCompleteTileList = new ArrayList<>(106);
-        registerSum = 0;
+        onBoardTileSum = 0;
 
         previousTileList = new ArrayList<>(106);
         previousTileList.addAll(onBoardTileList);
@@ -209,22 +209,34 @@ public class BoardManage {
 
     private boolean workChecking(int index, int detailIndex, int result, Player player) {
         // 숫자가 같은 경우, 색깔이 달라야 함
-        if ((onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number) &&
-                (onBoardTileList.get(index).get(detailIndex).color != player.tileList.get(result).color)) {
+        if (isNumSameAndColorDiffer(index, detailIndex, result, player)) {
             return true;
         }
 
         // 색깔이 같은 경우, 숫자가 달라야 함
-        else if (((onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number + 1)
-                || (onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number - 1))
-                && (onBoardTileList.get(index).get(detailIndex).color == player.tileList.get(result).color)) {
+        else if (isNumDifferAndColorSame(index, detailIndex, result, player)) {
             return true;
-        } else if (player.tileList.get(result).number == 999) {
+        }
+
+        else if (player.tileList.get(result).number == 999) {
             return true;
-        } else {
+        }
+
+        else {
             System.out.println("해당 요소는 해당 위치에 들어갈 수 없습니다.");
             return false;
         }
+    }
+
+    private boolean isNumSameAndColorDiffer(int index, int detailIndex, int result, Player player){
+        return (onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number) &&
+                (onBoardTileList.get(index).get(detailIndex).color != player.tileList.get(result).color);
+    }
+
+    private boolean isNumDifferAndColorSame(int index, int detailIndex, int result, Player player){
+        return ((onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number + 1)
+                || (onBoardTileList.get(index).get(detailIndex).number == player.tileList.get(result).number - 1))
+                && (onBoardTileList.get(index).get(detailIndex).color == player.tileList.get(result).color);
     }
 
     private boolean splitCheck(int index, int detailIndex, Player player) {
